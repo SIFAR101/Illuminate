@@ -53,8 +53,16 @@ gem "sassc-rails"
 
 gem "devise"
 gem 'omniauth'
+
+# Google Login
 gem 'omniauth-google-oauth2'
+
+# Omniauth Security
 gem 'omniauth-rails_csrf_protection', "~> 1.0"
+
+# Facebook Login
+gem 'omniauth-facebook'
+
 gem "autoprefixer-rails"
 gem "font-awesome-sass", "~> 6.1"
 gem "simple_form", github: "heartcombo/simple_form"
