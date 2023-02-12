@@ -20,11 +20,20 @@
 
 <% if devise_mapping.omniauthable? %>
   <% resource_class.omniauth_providers.each do |provider| %>
-    <%= form_for "Login",
-      url: omniauth_authorize_path(resource_name, provider),
-      method: :post,
-      data: {turbo: "false"} do |f| %>
-        <%= f.submit "Login with #{provider}" %>
+    <% if provider == :google_oauth2 %>
+      <%= form_for "Login",
+        url: omniauth_authorize_path(resource_name, provider),
+        method: :post,
+        data: {turbo: "false"} do |f| %>
+          <%= f.submit "Login with Google" %>
+      <% end %>
+    <% elsif provider == :facebook %>
+      <%= form_for "Login",
+        url: omniauth_authorize_path(resource_name, provider),
+        method: :post,
+        data: {turbo: "false"} do |f| %>
+          <%= f.submit "Login with Facebook" %>
+      <% end %>
     <% end %>
   <% end %>
 <% end %>
