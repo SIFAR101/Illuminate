@@ -3,16 +3,16 @@
 module Users
   class OmniauthCallbacksController < Devise::OmniauthCallbacksController
     def callback
-      user = User.from_omniauth(auth)
+      user = User.from_omniauth(request.env['omniauth.auth'])
 
-      if user.present?
-        sign_out_all_scopes
-        flash[:success] = t 'devise.omniauth_callbacks.success', kind: auth.provider.capitalize
-        sign_in_and_redirect user, event: :authentication
+      sign_out_all_scopes
+
+      if user.save
+      flash[:success] = t 'devise.omniauth_callbacks.success', kind: auth.provider.capitalize
+      sign_in_and_redirect user, event: :authentication
+
       else
-        flash[:alert] =
-          t 'devise.omniauth_callbacks.failure', kind: auth.provider.capitalize,
-                                                 reason: "#{auth.info.email} is not authorized."
+        flash[:alert] = user.errors.full_messages.join(", ")
         redirect_to new_user_session_path
       end
     end
@@ -22,6 +22,8 @@ module Users
         callback
       end
     end
+
+
 
     protected
 
