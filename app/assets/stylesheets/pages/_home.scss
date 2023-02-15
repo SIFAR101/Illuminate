@@ -1,1 +1,21 @@
 // Specific CSS for your home-page
+.homepage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+  padding: 0 10vw;
+
+  h1 { font-size: 3em; }
+  p {
+    font-size: 1.5em;
+    text-align: center;
+  }
+}
+
+
+#page-two {
+  width: 95vw;
+}
