@@ -9,14 +9,14 @@ window.Stimulus   = application
 export { application }
 
 
-anime({
-  targets: document.querySelector('.headline'),
-  opacity: [0, 1],
-  translateY: [20, 0],
-  easing: 'easeOutExpo',
-  duration: 2000,
-  delay: 500
-});
+// anime({
+//   targets: document.querySelector('.headline'),
+//   opacity: [0, 1],
+//   translateY: [20, 0],
+//   easing: 'easeOutExpo',
+//   duration: 2000,
+//   delay: 500
+// });
 
 anime({
   targets: document.querySelector('.learn-btn'),
@@ -44,3 +44,35 @@ anime({
   loop: true,
   easing: 'linear',
 });
+
+
+// Select the headline element
+const headline = document.querySelector('.headline');
+
+// Split the headline text into individual letters
+const letters = headline.textContent.split('');
+
+// Wrap each letter in a span element with a class of "letter"
+headline.innerHTML = letters.map((letter) => {
+  return `<span class="letter">${letter}</span>`;
+}).join('');
+
+// Define the animation properties for each letter
+const letterAnimation = anime.timeline({loop: true})
+  .add({
+    targets: '.letter',
+    translateY: ['-0.1em', '0.1em'],
+    easing: 'easeInOutSine',
+    duration: 500,
+    delay: anime.stagger(50),
+  })
+  .add({
+    targets: '.letter',
+    translateY: ['0.1em', '-0.1em'],
+    easing: 'easeInOutSine',
+    duration: 500,
+    delay: anime.stagger(50),
+  });
+
+// Start the animation
+letterAnimation.play();
