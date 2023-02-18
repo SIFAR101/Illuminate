@@ -111,6 +111,7 @@ GEM
       dotenv (= 2.8.1)
       railties (>= 3.2)
     erubi (1.12.0)
+    excon (0.99.0)
     execjs (2.8.1)
     faraday (2.7.4)
       faraday-net_http (>= 2.0, < 3.1)
@@ -299,6 +300,7 @@ DEPENDENCIES
   debug
   devise
   dotenv-rails
+  excon (~> 0.99.0)
   font-awesome-sass (~> 6.1)
   jbuilder
   jsbundling-rails
