@@ -63,6 +63,9 @@ gem 'omniauth-rails_csrf_protection', "~> 1.0"
 # Facebook Login
 gem 'omniauth-facebook'
 
+# API call
+gem 'excon', '~> 0.99.0'
+
 gem "autoprefixer-rails"
 gem "font-awesome-sass", "~> 6.1"
 gem "simple_form", github: "heartcombo/simple_form"
