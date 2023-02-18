@@ -8,33 +8,7 @@ window.Stimulus   = application
 
 export { application }
 
-
-// anime({
-//   targets: document.querySelector('.headline'),
-//   opacity: [0, 1],
-//   translateY: [20, 0],
-//   easing: 'easeOutExpo',
-//   duration: 2000,
-//   delay: 500
-// });
-
-anime({
-  targets: document.querySelector('.learn-btn'),
-  opacity: [0, 1],
-  scale: [0.5, 1],
-  easing: 'easeOutExpo',
-  duration: 1500,
-  delay: 1000
-});
-
-anime({
-  targets: document.querySelectorAll('.paragraph-intro'),
-  opacity: [0, 1],
-  translateX: [-30, 0],
-  easing: 'easeOutExpo',
-  duration: 1000,
-  delay: anime.stagger(500, {start: 1000})
-});
+// Flashing on download button
 
 anime({
   targets: document.querySelector('.download-btn'),
@@ -45,34 +19,55 @@ anime({
   easing: 'linear',
 });
 
+// Hovering animation on button "Learn more"
 
-// Select the headline element
-const headline = document.querySelector('.headline');
-
-// Split the headline text into individual letters
-const letters = headline.textContent.split('');
-
-// Wrap each letter in a span element with a class of "letter"
-headline.innerHTML = letters.map((letter) => {
-  return `<span class="letter">${letter}</span>`;
-}).join('');
-
-// Define the animation properties for each letter
-const letterAnimation = anime.timeline({loop: true})
-  .add({
-    targets: '.letter',
-    translateY: ['-0.1em', '0.1em'],
-    easing: 'easeInOutSine',
-    duration: 500,
-    delay: anime.stagger(50),
-  })
-  .add({
-    targets: '.letter',
-    translateY: ['0.1em', '-0.1em'],
-    easing: 'easeInOutSine',
-    duration: 500,
-    delay: anime.stagger(50),
+const button = document.querySelector('.learn-btn');
+button.addEventListener('mouseenter', () => {
+  anime({
+    targets: button,
+    scale: 1.1,
+    duration: 200,
+    easing: 'linear'
   });
+});
+button.addEventListener('mouseleave', () => {
+  anime({
+    targets: button,
+    scale: 1,
+    duration: 200,
+    easing: 'linear'
+  });
+});
 
-// Start the animation
-letterAnimation.play();
+// Illuminate reflection animation
+
+const headline = document.querySelector('.headline');
+const headlineWidth = headline.offsetWidth;
+
+headline.addEventListener('mouseenter', () => {
+  anime({
+    targets: headline.querySelector('::after'),
+    width: headlineWidth,
+  });
+});
+
+headline.addEventListener('mouseleave', () => {
+  anime({
+    targets: headline.querySelector('::after'),
+    width: 0,
+  });
+});
+
+const letters = document.querySelectorAll('.letter');
+
+letters.forEach((letter) => {
+  anime({
+    targets: letter,
+    opacity: [0.3, 1],
+    easing: 'linear',
+    direction: 'alternate',
+    loop: true,
+    duration: 1000,
+    delay: anime.random(0, 1000),
+  });
+});
