@@ -18,7 +18,7 @@ class ProductsController < ApplicationController
     # Flash alert needs to be created
     unless @product
       flash[:alert] = "Product not found"
-      return render action :new
+      return render action: :new
     end
 
     # Hard coding one product in order to see if we can get the info from the API
