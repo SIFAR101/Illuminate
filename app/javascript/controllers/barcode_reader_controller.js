@@ -1,18 +1,34 @@
-import { Controller } from "@hotwired/stimulus"
+import { Controller } from "@hotwired/stimulus";
 
-// Connects to data-controller="barcode-reader"
 export default class extends Controller {
   connect() {
     window.addEventListener('load', function () {
-      let selectedDeviceId;
-      const codeReader = new ZXing.BrowserMultiFormatReader()
-      console.log('ZXing code reader initialized')
+      const codeReader = new ZXing.BrowserMultiFormatReader();
+
       codeReader.listVideoInputDevices()
         .then((videoInputDevices) => {
-          const sourceSelect = document.getElementById('sourceSelect')
-          selectedDeviceId = videoInputDevices[0].deviceId
+          const sourceSelect = document.getElementById('sourceSelect');
 
-          // Removed "Start" link. When the video div is clicked, scan begins.
+          let selectedDeviceId;
+          let maxResolution = 0;
+
+          videoInputDevices.forEach((device) => {
+            if (device.label.indexOf("facing back") >= 0) {
+              // Prefer back-facing cameras
+              const { width, height } = device.videoConstraints;
+              const resolution = width * height;
+              if (resolution > maxResolution) {
+                selectedDeviceId = device.deviceId;
+                maxResolution = resolution;
+              }
+            }
+          });
+
+          if (!selectedDeviceId) {
+            // If no back-facing camera found, select the first device
+            selectedDeviceId = videoInputDevices[0].deviceId;
+          }
+
           document.getElementById('video').addEventListener('click', () => {
             codeReader.decodeFromVideoDevice(selectedDeviceId, 'video', (result, err) => {
               if (result) {
@@ -25,11 +41,9 @@ export default class extends Controller {
                 document.getElementById('result').textContent = err
               }
             })
-            console.log(`Started continous decode from camera with id ${selectedDeviceId}`)
+            console.log(`Started continuous decode from camera with id ${selectedDeviceId}`)
           })
 
-          // This reset is not really necessary. If the product isn't found, we render the product#new page again with a flash alert that
-          // the product hasn't been found.
           document.getElementById('resetButton').addEventListener('click', () => {
             codeReader.reset()
             document.getElementById('result').textContent = '';

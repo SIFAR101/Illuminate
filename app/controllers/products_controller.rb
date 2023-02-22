@@ -17,14 +17,19 @@ class ProductsController < ApplicationController
 
     # Flash alert needs to be created
     unless @product
-      flash[:alert] = "Product not found"
-      return render action: :new
+     # flash[:alert] = "Product not found"
+      redirect_to error_products_path
     end
 
     # Hard coding one product in order to see if we can get the info from the API
     # Without knowing the barcodes of certain products, it's best to hard code this to move forward w/ front-end.
-    @product = find_product_details('P258612', '1237379')
 
+    # Commenting out the hard coded product to test error page
+    # @product = find_product_details('P258612', '1237379')
+
+  end
+
+  def error
   end
 
   def create

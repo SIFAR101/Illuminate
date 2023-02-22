@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   resources :barcodes
   resources :products do
     collection do
-      get :search
+      get :search, :error
     end
   end
   root to: "pages#home"
