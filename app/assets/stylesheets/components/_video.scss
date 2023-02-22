@@ -1,0 +1,25 @@
+#video {
+  position: relative;
+  width: 95vw;
+  height: 100vh;
+  border: 1px solid black;
+  border-radius: 4em;
+}
+
+.video-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .text-instructions {
+    position: absolute;
+    top: 5vh;
+    width: 85vw;
+
+    h1 { font-size: 4em; }
+    p {
+      font-size: 3.5em;
+      line-height: 1.25em;
+    }
+  }
+}

@@ -1,38 +1,35 @@
 <div class="container" data-controller="barcode-reader">
 
    <section class="container" id="scanner-content">
-      <h1 class="title">Barcode Scanner</h1>
-
-      <p>Place a barcode in front of the screen to get started.</p>
-
       <%# <div>
         <a class="button" id="startButton">Start</a>
         <a class="button" id="resetButton">Reset</a>
       </div> %>
 
-      <div>
-        <video id="video" width="500" height="500" style="border: 1px solid gray"></video>
+      <div class="video-container">
+        <div id="sourceSelectPanel" style="display:none">
+          <label for="sourceSelect">Change video source:</label>
+          <select id="sourceSelect" style="max-width:400px">
+          </select>
+        </div>
+        <video id="video"></video>
+        <div class="text-instructions">
+        <h1 class="header">illuminate</h1>
+        <p>Tap the screen to scan a product</p>
+        </div>
       </div>
-
-      <%# <div id="sourceSelectPanel" style="display:none">
-        <label for="sourceSelect">Change video source:</label>
-        <select id="sourceSelect" style="max-width:400px">
-        </select>
-      </div> %>
-
-      <label>Result:</label>
       <pre><code id="result"></code></pre>
     </section>
 
     <%# This is the barcode form. Not hiding it yet so that we can see what's going on. Will be hidden from view. %>
     <div class="search-container">
       <%= form_with url: search_products_path, method: :get, local: true, id: "barcode-form" do %>
-      <div class="form-input">
+      <div class="form-input d-flex flex-column align-items-center">
         <%= text_field_tag :query,
             params[:query],
             class: "form-control rounded-3" ,
             placeholder: "Enter the barcode" %>
-        <%= submit_tag "Search", class: "btn btn-dark rounded-3" %>
+        <%= submit_tag "Search", class: "btn btn-dark rounded-3 mt-2" %>
         <% end %>
       </div>
     </div>

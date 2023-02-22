@@ -2,6 +2,8 @@ import { Controller } from "@hotwired/stimulus";
 
 export default class extends Controller {
   connect() {
+    const header = document.querySelector('h1')
+    console.log('Hello there.')
     window.addEventListener('load', function () {
       const codeReader = new ZXing.BrowserMultiFormatReader();
 
@@ -39,6 +41,9 @@ export default class extends Controller {
               if (err && !(err instanceof ZXing.NotFoundException)) {
                 console.error(err)
                 document.getElementById('result').textContent = err
+                codeReader.reset()
+                document.getElementById('result').textContent = '';
+                console.log('Reset.')
               }
             })
             console.log(`Started continuous decode from camera with id ${selectedDeviceId}`)
