@@ -1,36 +1,37 @@
-import { Controller } from "@hotwired/stimulus"
+import { Controller } from "@hotwired/stimulus";
 
-// Connects to data-controller="barcode-reader"
 export default class extends Controller {
   connect() {
     const header = document.querySelector('h1')
     console.log('Hello there.')
     window.addEventListener('load', function () {
-      let selectedDeviceId;
-      const codeReader = new ZXing.BrowserMultiFormatReader()
-      console.log('ZXing code reader initialized')
+      const codeReader = new ZXing.BrowserMultiFormatReader();
+
       codeReader.listVideoInputDevices()
         .then((videoInputDevices) => {
-          const sourceSelect = document.getElementById('sourceSelect')
-          selectedDeviceId = videoInputDevices[0].deviceId
-          if (videoInputDevices.length >= 1) {
-            videoInputDevices.forEach((element) => {
-              const sourceOption = document.createElement('option')
-              sourceOption.text = element.label
-              sourceOption.value = element.deviceId
-              sourceSelect.appendChild(sourceOption)
-            })
+          const sourceSelect = document.getElementById('sourceSelect');
 
-            sourceSelect.onchange = () => {
-              selectedDeviceId = sourceSelect.value;
-            };
+          let selectedDeviceId;
+          let maxResolution = 0;
 
-            const sourceSelectPanel = document.getElementById('sourceSelectPanel')
-            sourceSelectPanel.style.display = 'block'
+          videoInputDevices.forEach((device) => {
+            if (device.label.indexOf("facing back") >= 0) {
+              // Prefer back-facing cameras
+              const { width, height } = device.videoConstraints;
+              const resolution = width * height;
+              if (resolution > maxResolution) {
+                selectedDeviceId = device.deviceId;
+                maxResolution = resolution;
+              }
+            }
+          });
+
+          if (!selectedDeviceId) {
+            // If no back-facing camera found, select the first device
+            selectedDeviceId = videoInputDevices[0].deviceId;
           }
 
-          // Removed "Start" link. When the video div is clicked, scan begins.
-          document.getElementsByClassName('video-container')[0].addEventListener('click', () => {
+          document.getElementById('video').addEventListener('click', () => {
             codeReader.decodeFromVideoDevice(selectedDeviceId, 'video', (result, err) => {
               if (result) {
                 console.log(result)
@@ -45,11 +46,9 @@ export default class extends Controller {
                 console.log('Reset.')
               }
             })
-            console.log(`Started continous decode from camera with id ${selectedDeviceId}`)
+            console.log(`Started continuous decode from camera with id ${selectedDeviceId}`)
           })
 
-          // This reset is not really necessary. If the product isn't found, we render the product#new page again with a flash alert that
-          // the product hasn't been found.
           document.getElementById('resetButton').addEventListener('click', () => {
             codeReader.reset()
             document.getElementById('result').textContent = '';
