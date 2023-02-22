@@ -31,7 +31,7 @@ export default class extends Controller {
             selectedDeviceId = videoInputDevices[0].deviceId;
           }
 
-          document.getElementById('video').addEventListener('click', () => {
+          document.getElementById('video-container').addEventListener('click', () => {
             codeReader.decodeFromVideoDevice(selectedDeviceId, 'video', (result, err) => {
               if (result) {
                 console.log(result)
