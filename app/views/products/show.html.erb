@@ -3,12 +3,12 @@
     <h1><%= @product.name %></h1>
     <h2><span class="fw-light">by </span><%= @product.brand %></h2>
     <%# Inserted for mock star rating placement %>
-    <p style="font-size:2em;"><%= "⭐️" * (@product.user_rating + 5)%></p>
+    <p style="font-size:2em;"><%= "⭐️" * (@product.user_rating)%></p>
     <h3><%= @product.retail_price %></h3>
-    <p><%= @product.description %></p>
+    <p><%= @product.description.html_safe %></p>
     <p>Category: <%= @product.category %></p>
     <p>Color: <%= @product.color %></p>
-    <p>Ingredients: <%= @product.ingredients %></p>
+    <p>Ingredients: <%= @product.ingredients.html_safe %></p>
     <p>Bonus Points: <%= @product.bonus_points %></p>
   </div>
   <button class="btn btn-dark rounded-md fw-bold m-1 p-3 fs-3">New Scan</button>
