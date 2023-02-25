@@ -13,20 +13,27 @@ class ProductsController < ApplicationController
 
   def search
     # Search method to display data returned from API w/o creating the product.
-    @product = find_product(params[:query])
-
-    # Flash alert needs to be created
-    unless @product
-     # flash[:alert] = "Product not found"
-      redirect_to error_products_path
+    if Product.exists?(barcode: params[:query])
+      redirect_to product_path(Product.find_by(barcode: params[:query]).id)
+    else
+      @product = find_product(params[:query])
+      @product = find_product_details(@product['productId'], @product['skuId'])
+      @product = Product.new(name: @product['displayName'] , brand: @product['brand']['displayName'], description: @product['shortDescription'],
+                             ingredients: @product['currentSku']['ingredientDesc'], retail_price: @product['currentSku']['listPrice'],
+                             category: @product['parentCategory']['displayName'], user_rating: @product['rating'], barcode: params[:query])
+      # Flash alert needs to be created
+      if @product.save
+        redirect_to product_path(@product)
+      else
+      # flash[:alert] = "Product not found"
+        redirect_to error_products_path
+      end
     end
 
     # Hard coding one product in order to see if we can get the info from the API
     # Without knowing the barcodes of certain products, it's best to hard code this to move forward w/ front-end.
 
     # Commenting out the hard coded product to test error page
-    # @product = find_product_details('P258612', '1237379')
-
   end
 
   def error
