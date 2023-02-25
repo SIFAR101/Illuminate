@@ -4,7 +4,13 @@ class ProductsController < ApplicationController
   end
 
   def show
-      @product = Product.find(params[:id])
+    @product = Product.find(params[:id])
+  end
+
+  def favorite
+    @product = Product.find(params[:id])
+    current_user.favorite(@product)
+    redirect_to product_path(@product)
   end
 
   def new
@@ -18,9 +24,10 @@ class ProductsController < ApplicationController
     else
       @product = find_product(params[:query])
       @product = find_product_details(@product['productId'], @product['skuId'])
-      @product = Product.new(name: @product['displayName'] , brand: @product['brand']['displayName'], description: @product['shortDescription'].gsub!('<br><br>','<br>'),
-                             ingredients: @product['currentSku']['ingredientDesc'].gsub!('<br><br>','<br>'), retail_price: @product['currentSku']['listPrice'],
-                             category: @product['parentCategory']['displayName'], user_rating: @product['rating'], barcode: params[:query])
+      @product = Product.new(image_url: @product['skuImages']['image250'], name: @product['displayName'] , brand: @product['brand']['displayName'],
+                            description: @product['shortDescription'].gsub!('<br><br>','<br>'), ingredients: @product['currentSku']['ingredientDesc'].gsub!('<br><br>','<br>'),
+                            retail_price: @product['currentSku']['listPrice'], category: @product['parentCategory']['displayName'],
+                            user_rating: @product['rating'], barcode: params[:query])
       # Flash alert needs to be created
       if @product.save
         redirect_to product_path(@product)

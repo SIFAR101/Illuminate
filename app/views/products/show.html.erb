@@ -1,8 +1,21 @@
-<div class="container">
+<div class="container py-2">
+  <div class="product-img">
+    <img id="product-hero" class="rounded-circle" src="https://www.sephora.com/productimages/sku/s2210607-main-hero.jpg">
+    <% if current_user.favorited?(@product) %>
+      <div class="favorite-container">
+        <i id="favorited-heart" class="fa-solid fa-heart"></i>
+        <p id ="favorited-text" class="text-center">This product is in your favorites!</p>
+      </div>
+    <% else %>
+      <%= link_to favorite_product_path(@product), class: "favorite-container d-flex flex-column align-items-center" do %>
+          <i id="favorite-heart" class="fa-solid fa-heart"></i>
+          <p class="text-center">Add to your favorites</p>
+      <% end %>
+    <% end %>
+  </div>
   <div class="product-details">
     <h1><%= @product.name.titleize %></h1>
     <h2><span class="fw-light">by </span><%= @product.brand.titleize %></h2>
-    <%# Inserted for mock star rating placement %>
     <% (@product.user_rating.to_i).times do %>
       <i class="fa-solid fa-star fs-2" style="color:#ffcc00;"></i>
     <% end %>

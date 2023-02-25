@@ -4,6 +4,8 @@ class User < ApplicationRecord
   devise :omniauthable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, omniauth_providers: %i[google_oauth2 facebook]
 
+  acts_as_favoritor
+
   def self.from_omniauth(auth)
     user = User.where(email: auth.info.email).first
     if user
