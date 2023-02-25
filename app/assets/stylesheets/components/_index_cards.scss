@@ -1,0 +1,28 @@
+.product-index-title {
+  font-weight: bold;
+  font-size: 2rem;
+  text-align: center;
+  margin: auto;
+}
+
+.product-card-body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.product-card {
+  box-shadow: 0px 3px 15px rgba(0,0,0,0.2);
+  padding: 10px 0;
+}
+
+a {
+  text-decoration: none !important;
+  color: black;
+}
+
+a:hover {
+  text-decoration: none;
+  color: black;
+}

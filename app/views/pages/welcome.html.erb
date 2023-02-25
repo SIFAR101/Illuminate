@@ -1,0 +1,48 @@
+<div class="container-fluid">
+<div style='margin: 20px auto;'>
+<h1 class="text-center" style='font-size: 8vw'>Welcome to Illuminate! </h1>
+<h2 class='text-center' style='font-size: 5vw'>What would you like to do today?</h2>
+</div>
+  <div class="row" style='margin-top: 30px;'>
+    <div class="col-sm-12 col-md-6 product-column mx-auto">
+      <%= link_to new_product_path, aria_label: "Scan a product", role: "button", tabindex: "0" do %>
+        <div class="card product-card mb-3">
+          <div class="row g-0">
+            <div class="col-5">
+              <%= image_tag 'barcode1', alt: "Barcode image", class: 'img-fluid rounded-start p-3' %>
+            </div>
+            <div class="col-7">
+              <div class="card-body product-card-body">
+                <h5 class="card-title product-index-title">Scan</h5>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="col-sm-12 col-md-6 product-column mx-auto">
+      <%= link_to '#', aria_label: "Get assistance", role: "button", tabindex: "0" do %>
+        <div class="card product-card mb-3" >
+          <div class="row g-0">
+            <div class="col-5">
+              <%= image_tag 'assistance2', alt: "Assistance image", class: 'img-fluid rounded-start p-3' %>
+            </div>
+            <div class="col-7">
+              <div class="card-body product-card-body">
+                <h5 class="card-title product-index-title">Help</h5>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="text-center" style='margin: 20px auto;'>
+    <div class="button-container my-3" style="max-width: 400px; margin: 0 auto;">
+      <%= link_to 'Sign Up', new_user_registration_path, class: 'btn btn-lg btn-dark rounded-sm' %>
+      <%= link_to 'Login', new_user_session_path, class: 'btn btn-lg btn-outline-dark rounded-sm' %>
+    </div>
+  </div>
+</div>
