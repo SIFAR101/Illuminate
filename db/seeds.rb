@@ -18,7 +18,7 @@ puts "Creating one product"
 Product.create!(name: "All Day Foundation", brand: "Estée Lauder",
                 description: "This medium coverage foundation can be worn up to 8 hours with no smudging.
                               Coming in 32 shades, you'll be able to find your perfect match.",
-                retail_price: 40.00, category: "Makeup", color: "Sienna", ingredients: "Water, Oil, Cream",
+                retail_price: '$40.00', category: "Makeup", color: "Sienna", ingredients: "Water, Oil, Cream",
                 user_rating: 0, bonus_points: "No Animal Testing")
 
 puts "Product created."

@@ -9,6 +9,9 @@ Rails.application.routes.draw do
     collection do
       get :search, :error
     end
+    member do
+      get :favorite
+    end
   end
   root to: "pages#home"
   get '/welcome', to: 'pages#welcome'

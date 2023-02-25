@@ -1,15 +1,29 @@
-<div class="container">
+<div class="container py-2">
+  <div class="product-img">
+    <img id="product-hero" class="rounded-circle" src="https://www.sephora.com/productimages/sku/s2210607-main-hero.jpg">
+    <% if current_user.favorited?(@product) %>
+      <div class="favorite-container">
+        <i id="favorited-heart" class="fa-solid fa-heart"></i>
+        <p id ="favorited-text" class="text-center">This product is in your favorites!</p>
+      </div>
+    <% else %>
+      <%= link_to favorite_product_path(@product), class: "favorite-container d-flex flex-column align-items-center" do %>
+          <i id="favorite-heart" class="fa-solid fa-heart"></i>
+          <p class="text-center">Add to your favorites</p>
+      <% end %>
+    <% end %>
+  </div>
   <div class="product-details">
-    <h1><%= @product.name %></h1>
-    <h2><span class="fw-light">by </span><%= @product.brand %></h2>
-    <%# Inserted for mock star rating placement %>
-    <p style="font-size:2em;"><%= "⭐️" * (@product.user_rating)%></p>
-    <h3><%= @product.retail_price %></h3>
+    <h1><%= @product.name.titleize %></h1>
+    <h2><span class="fw-light">by </span><%= @product.brand.titleize %></h2>
+    <% (@product.user_rating.to_i).times do %>
+      <i class="fa-solid fa-star fs-2" style="color:#ffcc00;"></i>
+    <% end %>
+    <h3 class="mt-3"><%= @product.retail_price %></h3>
     <p><%= @product.description.html_safe %></p>
-    <p>Category: <%= @product.category %></p>
-    <p>Color: <%= @product.color %></p>
-    <p>Ingredients: <%= @product.ingredients.html_safe %></p>
-    <p>Bonus Points: <%= @product.bonus_points %></p>
+    <p><strong>Category:</strong> <%= @product.category %></p>
+    <p><strong>Color:</strong> <%= @product.color.nil? ? "Unavailable" : @product.color %></p>
+    <p><strong>Ingredients:</strong> <%= @product.ingredients.html_safe %></p>
   </div>
   <button class="btn btn-dark rounded-md fw-bold m-1 p-3 fs-3">New Scan</button>
   <button class="btn btn-dark rounded-md fw-bold m-1 p-3 fs-3">Ask For Help</button>

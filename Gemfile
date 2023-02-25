@@ -66,6 +66,9 @@ gem 'omniauth-facebook'
 # API call
 gem 'excon', '~> 0.99.0'
 
+# Acts_as_Favoritor
+gem 'acts_as_favoritor'
+
 gem "autoprefixer-rails"
 gem "font-awesome-sass", "~> 6.1"
 gem "simple_form", github: "heartcombo/simple_form"
