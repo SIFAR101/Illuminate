@@ -9,3 +9,6 @@ application.register("barcode-reader", BarcodeReaderController)
 
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
+
+import HomepageWebController from "./homepage_web_controller"
+application.register("homepage-web", HomepageWebController)
