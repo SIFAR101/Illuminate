@@ -1,4 +1,6 @@
 class ProductsController < ApplicationController
+  before_action :store_location, only: [:show]
+
   def index
     @products = Product.all
   end
@@ -73,6 +75,10 @@ class ProductsController < ApplicationController
   require "excon"
   require "json"
   require "open-uri"
+
+  def store_location
+    session[:user_return_to] = request.fullpath if current_user.nil?
+  end
 
   def product_params
     params.require(:product).permit(:name, :brand, :description, :retail_price,
