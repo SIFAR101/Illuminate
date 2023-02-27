@@ -6,7 +6,7 @@
         method: :post,
         data: {turbo: "false"} do |f| %>
           <%= f.button :submit, class: "btn-google" do %>
-            <i class="fab fa-google"></i> Login with Google
+            <i class="fab fa-google"></i> Continue with Google
           <% end %>
       <% end %>
     <% elsif provider == :facebook %>
@@ -15,7 +15,7 @@
         method: :post,
         data: {turbo: "false"} do |f| %>
           <%= f.button :submit, class: "btn-facebook" do %>
-            <i class="fab fa-facebook"></i> Login with Facebook
+            <i class="fab fa-facebook"></i> Continue with Facebook
           <% end %>
       <% end %>
     <% end %>
