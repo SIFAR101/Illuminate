@@ -7,7 +7,7 @@ services:
   - type: web
     name: illuminate
     env: ruby
-    buildCommand: "./bin/render-build.sh"
+    buildCommand: "./render-build.sh"
     startCommand: "bundle exec puma -C config/puma.rb"
     envVars:
       - key: DATABASE_URL
