@@ -1,6 +1,6 @@
 databases:
   - name: Illuminate
-    databaseName: Illuminate
+    databaseName: Illuminate_production
     user: Illuminate
 
 services:
