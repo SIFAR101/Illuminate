@@ -9,7 +9,9 @@ export default class extends Controller {
 
       codeReader.listVideoInputDevices()
         .then((videoInputDevices) => {
+          // Just want to see which devices are available
           console.log('devices', videoInputDevices)
+
           const sourceSelect = document.getElementById('sourceSelect');
 
           let selectedDeviceId;
