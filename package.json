@@ -12,6 +12,6 @@
   },
   "scripts": {
     "build": "webpack --config webpack.config.js",
-    "build:css": "RAILS_ENV=production bin/rails css:compile"
+    "build:css": "sassc source/stylesheets/main.scss public/stylesheets/main.css"
   }
 }
