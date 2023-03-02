@@ -81,6 +81,7 @@ test:
 #
 production:
   <<: *default
+  url: <%= ENV["DATABASE_URL"] %>
   database: Illuminate_production
   username: Illuminate
   password: <%= ENV["ILLUMINATE_DATABASE_PASSWORD"] %>
