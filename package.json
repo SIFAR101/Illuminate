@@ -12,6 +12,6 @@
   },
   "scripts": {
     "build": "webpack --config webpack.config.js",
-    "build:css": "sassc source/stylesheets/main.scss public/stylesheets/main.css"
+    "build:css": "sass ./app/assets/stylesheets/application.scss"
   }
 }
