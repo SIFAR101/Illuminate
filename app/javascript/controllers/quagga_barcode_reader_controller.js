@@ -29,12 +29,24 @@ export default class extends Controller {
       Quagga.start();
     });
 
+    let processedCode = false; // Keep track of whether a code has been processed or not
+
     Quagga.onDetected(function (data) {
-      const barcodeResultEl = document.getElementById("quagga-barcode-result");
-      if (barcodeResultEl) {
-        barcodeResultEl.innerText = data.codeResult.code;
+      // Only process the code if it hasn't been processed already
+      if (!processedCode) {
+        const barcodeResultEl = document.getElementById("quagga-barcode-result");
+        if (barcodeResultEl) {
+          barcodeResultEl.innerText = data.codeResult.code;
+        }
+        console.log("Barcode detected and processed: " + data.codeResult.code, data);
+
+        // Set the processedCode flag to true so that the same code isn't processed again
+        processedCode = true;
+
+        // Do whatever you need to do with the code here
+        // Call your API or perform any other actions
+        // ...
       }
-      console.log("Barcode detected and processed: " + data.codeResult.code, data);
     });
   }
 }
