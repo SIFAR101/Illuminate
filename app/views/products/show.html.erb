@@ -1,7 +1,7 @@
 <div class="container py-2">
   <div class="product-img">
 
-    <img id="product-hero" class="rounded-circle" src="https://www.sephora.com/productimages/sku/s2210607-main-hero.jpg">
+    <img id="product-hero" class="rounded-circle" src=<%= @product.image_url%> alt=<%= @product.alt_text%>>
     <!-- If the user is signed in, show the 'Add to favorite' feature -->
     <% if user_signed_in? %>
     <% if current_user.favorited?(@product) %>
@@ -41,6 +41,6 @@
     <p><strong>Color:</strong> <%= @product.color.nil? ? "Unavailable" : @product.color %></p>
     <p><strong>Ingredients:</strong> <%= @product.ingredients.html_safe %></p>
   </div>
-  <button class="btn btn-dark rounded-md fw-bold m-1 p-3 fs-3">New Scan</button>
+  <%= link_to 'New Scan', new_product_path, class: "btn btn-dark rounded-md fw-bold m-1 p-3 fs-3" %>
   <button class="btn btn-dark rounded-md fw-bold m-1 p-3 fs-3">Ask For Help</button>
 </div>
