@@ -72,6 +72,12 @@ class ProductsController < ApplicationController
     redirect_to products_path, status: :see_other
   end
 
+  def user_favorites
+    @products = []
+    @favorites = current_user.all_favorites
+    @favorites.each { |favorite| @products << Product.find(favorite.favoritable_id) }
+  end
+
   private
   require "rubygems"
   require "excon"
