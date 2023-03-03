@@ -26,7 +26,7 @@ class ProductsController < ApplicationController
     else
       @product = find_product(params[:query])
       @product = find_product_details(@product['productId'], @product['skuId'])
-      @product = Product.new(image_url: @product['skuImages']['image250'], name: @product['displayName'] , brand: @product['brand']['displayName'],
+      @product = Product.new(image_url: @product['currentSku']['skuImages']['image250'], name: @product['displayName'] , brand: @product['brand']['displayName'],
                             description: @product['shortDescription'].gsub!('<br><br>','<br>'), ingredients: @product['currentSku']['ingredientDesc'].gsub!('<br><br>','<br>'),
                             retail_price: @product['currentSku']['listPrice'], category: @product['parentCategory']['displayName'],
                             user_rating: @product['rating'], barcode: params[:query])
