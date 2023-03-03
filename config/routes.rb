@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   resources :products do
     collection do
-      get :search, :error
+      get :search, :error, :user_favorites
     end
     member do
       get :favorite
