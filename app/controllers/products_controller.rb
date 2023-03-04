@@ -21,7 +21,7 @@ class ProductsController < ApplicationController
 
   def search
     # Search method to display data returned from API w/o creating the product.
-    if Product.exists?(barcode: params[:query])
+    if Product.exists?(barcode: params[:query].to_s)
       redirect_to product_path(Product.find_by(barcode: params[:query]).id)
     elsif find_product(params[:query]).nil?
       redirect_to error_products_path
@@ -33,6 +33,7 @@ class ProductsController < ApplicationController
                             retail_price: @product['currentSku']['listPrice'], category: @product['parentCategory']['displayName'],
                             user_rating: @product['rating'], barcode: params[:query])
       # Flash alert needs to be created
+      puts @product.valid?
       if @product.save
         redirect_to product_path(@product)
       else
@@ -107,6 +108,7 @@ class ProductsController < ApplicationController
   end
 
   def find_product(barcode)
+    raise "Barcode is nil" if barcode.nil?
     request_api("https://sephora.p.rapidapi.com/products/search-by-barcode?upccode=#{barcode}")
   end
 
