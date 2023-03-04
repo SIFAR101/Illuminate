@@ -1,6 +1,7 @@
 #video {
   position: relative;
-  width: 95vw;
+  object-fit: cover;
+  width: 100vw;
   height: 100vh;
   border: 1px solid black;
   border-radius: 4em;
