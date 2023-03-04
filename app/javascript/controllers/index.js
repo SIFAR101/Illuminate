@@ -4,11 +4,14 @@
 
 import { application } from "./application"
 
-import BarcodeReaderController from "./barcode_reader_controller"
-application.register("barcode-reader", BarcodeReaderController)
+//import BarcodeReaderController from "./barcode_reader_controller"
+//application.register("barcode-reader", BarcodeReaderController)
 
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
 
 import HomepageWebController from "./homepage_web_controller"
 application.register("homepage-web", HomepageWebController)
+
+import QuaggaBarcodeReaderController from "./quagga_barcode_reader_controller"
+application.register("quagga-barcode-reader", QuaggaBarcodeReaderController)
