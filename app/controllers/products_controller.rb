@@ -44,7 +44,7 @@ class ProductsController < ApplicationController
   end
 
   def assistance
-    @threewords = what3words.convert_to_3wa [29.567041, 106.587875]
+    
   end
 
   def error
