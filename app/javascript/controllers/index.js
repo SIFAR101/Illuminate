@@ -4,8 +4,11 @@
 
 import { application } from "./application"
 
-//import BarcodeReaderController from "./barcode_reader_controller"
-//application.register("barcode-reader", BarcodeReaderController)
+import BarcodeReaderController from "./barcode_reader_controller"
+application.register("barcode-reader", BarcodeReaderController)
+
+import FavoriteController from "./favorite_controller"
+application.register("favorite", FavoriteController)
 
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)

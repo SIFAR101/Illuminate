@@ -10,7 +10,7 @@
         <p id ="favorited-text" class="text-center">This product is in your favorites!</p>
       </div>
     <% else %>
-      <%= link_to user_favorites_products_path, class: "favorite-container d-flex flex-column align-items-center" do %>
+      <%= link_to user_favorites_products_path(@product), class: "favorite-container d-flex flex-column align-items-center" do %>
           <i id="favorite-heart" class="fa-solid fa-heart"></i>
           <p class="text-center">Add to your favorites</p>
       <% end %>
