@@ -1,11 +1,10 @@
 import { Controller } from "stimulus"
 
 export default class extends Controller {
-  static targets = [ "text" ]
+  static targets = [ "heart", "text" ]
 
   toggle() {
-    console.log("hello")
-    const heartIcon = this.element
+    const heartIcon = this.heartTarget
     const text = this.textTarget
 
     heartIcon.classList.toggle('fa-regular')

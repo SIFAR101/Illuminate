@@ -4,10 +4,9 @@
     <img id="product-hero" class="rounded-circle" src=<%= @product.image_url%> alt=<%= @product.alt_text%>>
     <!-- If the user is signed in, show the 'Add to favorite' feature -->
     <% if user_signed_in? %>
-      <div class="favorite-container">
-        <i id="favorite-heart" class="fa-heart fa-<%= current_user.favorited?(@product) ? 'solid' : 'regular' %>"
-          data-controller="favorite" data-action="click->favorite#toggle"></i>
-        <p class="text-center" data-target="favorite.text" data-controller="favorite" data-action="click->favorite#toggle">
+      <div class="favorite-container" data-controller="favorite" data-action="click->favorite#toggle">
+        <i id="favorite-heart" class="fa-heart fa-<%= current_user.favorited?(@product) ? 'solid' : 'regular' %>" data-target="favorite.heart"></i>
+        <p class="text-center" data-target="favorite.text">
           <%= current_user.favorited?(@product) ? "This product is in your favorites!" : "Add to your favorites" %>
         </p>
       </div>
