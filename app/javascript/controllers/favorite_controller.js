@@ -1,7 +1,15 @@
-import { Controller } from "@hotwired/stimulus"
+import { Controller } from "stimulus"
 
-// Connects to data-controller="favorite"
 export default class extends Controller {
-  connect() {
+  static targets = [ "text" ]
+
+  toggle() {
+    console.log("hello")
+    const heartIcon = this.element
+    const text = this.textTarget
+
+    heartIcon.classList.toggle('fa-regular')
+    heartIcon.classList.toggle('fa-solid')
+    text.textContent = heartIcon.classList.contains('fa-solid') ? "This product is in your favorites!" : "Add to your favorites"
   }
 }
