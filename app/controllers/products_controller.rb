@@ -41,11 +41,6 @@ class ProductsController < ApplicationController
         redirect_to error_products_path
       end
     end
-
-    # Hard coding one product in order to see if we can get the info from the API
-    # Without knowing the barcodes of certain products, it's best to hard code this to move forward w/ front-end.
-
-    # Commenting out the hard coded product to test error page
   end
 
   def error

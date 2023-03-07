@@ -6,6 +6,7 @@ export default class extends Controller {
   toggle() {
     const heartIcon = this.heartTarget
     const text = this.textTarget
+    const productId = this.element.dataset.productId
 
     heartIcon.classList.toggle('fa-regular')
     heartIcon.classList.toggle('fa-solid')

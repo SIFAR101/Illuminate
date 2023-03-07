@@ -1,12 +1,20 @@
 <div class="container">
-  <h1>User Favorites</h1>
-  <% @products.each do |product| %>
-    <div class="card rounded-3" style="width: 20rem;">
-      <img src="<%= product.image_url %>" class="card-img-top" alt="<%= product.alt_text %>">
-      <div class="card-body">
-        <div class="card-title fs-5"><b><%= product.name.titleize %></b></div>
-        <div class="card-subtitle"><%= product.brand.titleize %></div>
-      </div>
-    </div>
+  <h1>My Favorites</h1>
+  <% if @products.any? %>
+    <ul>
+    <% @products.each do |product| %>
+      <li><%= link_to product.name, product_path(product) %>
+        <div class="card rounded-3" style="width: 20rem;">
+          <img src="<%= product.image_url %>" class="card-img-top" alt="<%= product.alt_text %>">
+          <div class="card-body">
+            <div class="card-title fs-5"><b><%= product.name.titleize %></b></div>
+            <div class="card-subtitle"><%= product.brand.titleize %></div>
+          </div>
+        </div>
+      </li>
+    <% end %>
+    </ul>
+  <% else %>
+    <p>You haven't favorited any products yet.</p>
   <% end %>
 </div>
