@@ -27,11 +27,11 @@ class ProductsController < ApplicationController
       redirect_to error_products_path
     else
       @product = find_product(params[:query])
-      @product = find_product_details(@product['productId'], @product['skuId'])
-      @product = Product.new(image_url: @product['currentSku']['skuImages']['image250'], alt_text: @product['imageAltText'], name: @product['displayName'] , brand: @product['brand']['displayName'],
-                            description: @product['shortDescription'].gsub!('<br><br>','<br>'), ingredients: @product['currentSku']['ingredientDesc'].gsub!('<br><br>','<br>'),
-                            retail_price: @product['currentSku']['listPrice'], category: @product['parentCategory']['displayName'],
-                            user_rating: @product['rating'], barcode: params[:query])
+      @product = find_product_details(@product['attributes']['product-id'])
+      @product = @product['data']['attributes']
+      @product = Product.new(image_url: @product['images-urls'][0], name: @product['name'] , brand: @product['brand-name'],
+                            description: @product['description'].gsub!('<br><br>','<br>'), ingredients: @product['ingredients'].gsub!('<br><br>','<br>'),
+                            retail_price: @product['display-price'], user_rating: @product['rating'], barcode: params[:query])
       # Flash alert needs to be created
       puts @product.valid?
       if @product.save
@@ -104,11 +104,11 @@ class ProductsController < ApplicationController
 
   def find_product(barcode)
     raise "Barcode is nil" if barcode.nil?
-    request_api("https://sephora.p.rapidapi.com/products/search-by-barcode?upccode=#{barcode}")
+    request_api("https://sephora.p.rapidapi.com/products/v2/search-by-barcode?upcs=#{barcode}")
   end
 
-  def find_product_details(product_id, sku)
-    request_api("https://sephora.p.rapidapi.com/products/detail?productId=#{product_id}&preferedSku=#{sku}")
+  def find_product_details(product_id)
+    request_api("https://sephora.p.rapidapi.com/products/v2/detail?id=#{product_id}")
   end
 
 end
