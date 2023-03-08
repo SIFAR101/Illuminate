@@ -1,6 +1,6 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
   <div class="container-fluid">
-    <%= link_to "#", class: "navbar-brand" do %>
+    <%= link_to welcome_path, class: "navbar-brand" do %>
       <%= image_tag "star.png" %>
     <% end %>
 
@@ -16,6 +16,9 @@
           </li>
             <li class="nav-item">
             <%= link_to "Welcome Page", welcome_path, class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "My Favorites", user_favorites_products_path, class: "nav-link" %>
           </li>
           <li class="nav-item">
             <%= link_to "Barcode Scanner", new_product_path, class: "nav-link" %>

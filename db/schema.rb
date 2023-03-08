@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_25_135658) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_02_221635) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -23,13 +23,17 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_25_135658) do
     t.boolean "blocked", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id", null: false
+    t.bigint "product_id", null: false
     t.index ["blocked"], name: "index_favorites_on_blocked"
     t.index ["favoritable_id", "favoritable_type"], name: "fk_favoritables"
     t.index ["favoritable_type", "favoritable_id", "favoritor_type", "favoritor_id", "scope"], name: "uniq_favorites__and_favoritables", unique: true
     t.index ["favoritable_type", "favoritable_id"], name: "index_favorites_on_favoritable"
     t.index ["favoritor_id", "favoritor_type"], name: "fk_favorites"
     t.index ["favoritor_type", "favoritor_id"], name: "index_favorites_on_favoritor"
+    t.index ["product_id"], name: "index_favorites_on_product_id"
     t.index ["scope"], name: "index_favorites_on_scope"
+    t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
   create_table "products", force: :cascade do |t|
@@ -46,6 +50,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_25_135658) do
     t.datetime "updated_at", null: false
     t.string "barcode"
     t.string "image_url"
+    t.string "alt_text"
   end
 
   create_table "users", force: :cascade do |t|
@@ -58,8 +63,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_25_135658) do
     t.datetime "updated_at", null: false
     t.string "full_name"
     t.string "avatar_url"
+    t.string "provider"
+    t.string "uid"
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["provider", "uid"], name: "index_users_on_provider_and_uid", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "favorites", "products"
+  add_foreign_key "favorites", "users"
 end

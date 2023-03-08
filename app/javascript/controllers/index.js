@@ -7,6 +7,9 @@ import { application } from "./application"
 import BarcodeReaderController from "./barcode_reader_controller"
 application.register("barcode-reader", BarcodeReaderController)
 
+import FavoriteController from "./favorite_controller"
+application.register("favorite", FavoriteController)
+
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
 
@@ -15,3 +18,6 @@ application.register("homepage-web", HomepageWebController)
 
 import MapController from "./map_controller"
 application.register("map", MapController)
+
+import QuaggaBarcodeReaderController from "./quagga_barcode_reader_controller"
+application.register("quagga-barcode-reader", QuaggaBarcodeReaderController)

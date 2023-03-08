@@ -1,6 +1,6 @@
 import { Controller } from "@hotwired/stimulus";
 
-export default class extends Controller {
+ export default class extends Controller {
   connect() {
     const header = document.querySelector('h1')
     console.log('Hello there.')
@@ -9,6 +9,9 @@ export default class extends Controller {
 
       codeReader.listVideoInputDevices()
         .then((videoInputDevices) => {
+          // Just want to see which devices are available
+          console.log('devices', videoInputDevices)
+
           const sourceSelect = document.getElementById('sourceSelect');
 
           let selectedDeviceId;
@@ -32,7 +35,7 @@ export default class extends Controller {
           }
 
           document.getElementById('video-container').addEventListener('click', () => {
-            codeReader.decodeFromVideoDevice(selectedDeviceId, 'video', (result, err) => {
+            codeReader.decodeOnceFromVideoDevice(selectedDeviceId, 'video', (result, err) => {
               if (result) {
                 console.log(result)
                 document.getElementById('query').textContent = result.text
@@ -49,11 +52,11 @@ export default class extends Controller {
             console.log(`Started continuous decode from camera with id ${selectedDeviceId}`)
           })
 
-          document.getElementById('resetButton').addEventListener('click', () => {
-            codeReader.reset()
-            document.getElementById('result').textContent = '';
-            console.log('Reset.')
-          })
+          // document.getElementById('resetButton').addEventListener('click', () => {
+          //   codeReader.reset()
+          //   document.getElementById('result').textContent = '';
+          //   console.log('Reset.')
+          // })
         })
         .catch((err) => {
           console.error(err)

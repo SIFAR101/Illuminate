@@ -1,16 +1,28 @@
 <div class="container py-2">
   <div class="product-img">
-    <img id="product-hero" class="rounded-circle" src="https://www.sephora.com/productimages/sku/s2210607-main-hero.jpg">
-    <% if current_user.favorited?(@product) %>
-      <div class="favorite-container">
-        <i id="favorited-heart" class="fa-solid fa-heart"></i>
-        <p id ="favorited-text" class="text-center">This product is in your favorites!</p>
+
+    <img id="product-hero" class="rounded-circle" src=<%= @product.image_url%> alt=<%= @product.alt_text%>>
+    <!-- If the user is signed in, show the 'Add to favorite' feature -->
+    <% if user_signed_in? %>
+      <div class="favorite-container" data-controller="favorite" data-action="click->favorite#toggle" data-product-id="<%= @product.id %>">
+        <i id="favorite-heart" class="fa-heart fa-<%= current_user.favorited?(@product) ? 'solid' : 'regular' %>" data-target="favorite.heart"></i>
+        <p class="text-center" data-target="favorite.text">
+          <%= current_user.favorited?(@product) ? "This product is in your favorites!" : "Add to your favorites" %>
+        </p>
       </div>
+      <%= link_to "My favorites", user_favorites_products_path %>
+
+    <!-- Else, ask them to sign up or login -->
+
     <% else %>
-      <%= link_to favorite_product_path(@product), class: "favorite-container d-flex flex-column align-items-center" do %>
-          <i id="favorite-heart" class="fa-solid fa-heart"></i>
-          <p class="text-center">Add to your favorites</p>
-      <% end %>
+    <div class="favorite-container">
+    <i id="favorite-heart" class="fa-regular fa-heart"></i>
+    <p class="text-center"> Login or sign up to save this product. </p>
+    <div class="d-flex m-2">
+     <%= link_to 'Login', new_user_session_path, class: "btn btn-dark m-2" %>
+     <%= link_to 'Sign Up', new_user_registration_path, class: "btn btn-dark m-2" %>
+    </div>
+    </div>
     <% end %>
   </div>
   <div class="product-details">
@@ -25,6 +37,6 @@
     <p><strong>Color:</strong> <%= @product.color.nil? ? "Unavailable" : @product.color %></p>
     <p><strong>Ingredients:</strong> <%= @product.ingredients.html_safe %></p>
   </div>
-  <button class="btn btn-dark rounded-md fw-bold m-1 p-3 fs-3">New Scan</button>
+  <%= link_to 'New Scan', new_product_path, class: "btn btn-dark rounded-md fw-bold m-1 p-3 fs-3" %>
   <button class="btn btn-dark rounded-md fw-bold m-1 p-3 fs-3">Ask For Help</button>
 </div>
