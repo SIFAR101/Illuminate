@@ -8,6 +8,7 @@ export default class extends Controller {
   }
 
   connect() {
+    console.log("sortable controller connected")
     mapboxgl.accessToken = this.apiKeyValue
 
     const map = new mapboxgl.Map({
@@ -30,4 +31,21 @@ export default class extends Controller {
       })
     );
   }
+
+  fetchStores() {
+    const options = {
+      method: 'GET',
+      headers: {
+        'X-RapidAPI-Key': 'a7fa530355mshba4e0f21281f064p1daf8fjsn38e1d307e269',
+        'X-RapidAPI-Host': 'sephora.p.rapidapi.com'
+      }
+    };
+
+    fetch('https://sephora.p.rapidapi.com/stores/list?latitude=33.9733&longitude=-118.2487&radius=25', options)
+	    .then(response => response.json())
+	    .then(response => console.log(response))
+	    .catch(err => console.error(err));
+  }
+
+  fetchStores()
 }
