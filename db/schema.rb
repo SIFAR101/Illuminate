@@ -61,6 +61,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_08_212435) do
     t.string "avatar_url"
     t.string "provider"
     t.string "uid"
+    t.float "latitude"
+    t.float "longitude"
+    t.string "sephora_store_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["provider", "uid"], name: "index_users_on_provider_and_uid", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
