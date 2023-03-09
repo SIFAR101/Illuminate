@@ -4,7 +4,6 @@ import { Application } from "@hotwired/stimulus"
 import "@hotwired/turbo-rails"
 import "./controllers"
 import "bootstrap"
-import "@zxing/library"
 
 const application = Application.start()
 
