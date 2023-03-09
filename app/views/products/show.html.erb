@@ -1,9 +1,9 @@
 <div class="container py-2">
   <div class="product-img">
     <% if @product.image_url.nil? %>
-      <img id="product-hero" class="rounded-circle" src="cream.png" atl="Product image is not available">
+      <%= image_tag "cream.png", alt: "Product image not available", id: "product-hero", class: "bg-white rounded-circle", width: 250 %>
     <% else %>
-      <img id="product-hero" class="rounded-circle" src=<%= @product.image_url%> alt=<%= "Image of #{@product.name} by #{@product.brand}" %>>
+      <img id="product-hero" class="rounded-circle" style="width:250px;" src=<%= @product.image_url%> alt=<%= "Image of #{@product.name} by #{@product.brand}" %>>
     <% end %>
     <!-- If the user is signed in, show the 'Add to favorite' feature -->
     <% if user_signed_in? %>
@@ -34,10 +34,11 @@
     <% (@product.user_rating.to_i).times do %>
       <i class="fa-solid fa-star fs-2" style="color:#ffcc00;"></i>
     <% end %>
-    <h3 class="mt-3"><%= @product.retail_price == "$0.00" ? "Ask store associate" : @product.retail.price  %></h3>
+    <h3 class="mt-3"><%= @product.retail_price == "$0.00" ? "Ask store associate" : @product.retail_price  %></h3>
     <p><%= @product.description.html_safe %></p>
     <p><strong>Color:</strong> <%= @product.color.nil? ? "Ask store associate" : @product.color %></p>
     <p><strong>Ingredients:</strong> <%= @product.ingredients.html_safe %></p>
+    <p><strong>Bonus Points:</strong> <%= @product.bonus_points.html_safe %></p>
   </div>
   <%= link_to 'New Scan', new_product_path, class: "btn btn-dark rounded-md fw-bold m-1 p-3 fs-3" %>
   <button class="btn btn-dark rounded-md fw-bold m-1 p-3 fs-3">Ask For Help</button>
