@@ -15,7 +15,6 @@
     "webpack-cli": "^5.0.1"
   },
   "scripts": {
-    "build": "webpack --config webpack.config.js",
-    "build:css": "sass ./app/assets/stylesheets/application.scss"
+    "build": "webpack --config webpack.config.js"
   }
 }
