@@ -15,7 +15,8 @@ export default class extends Controller {
         name: "Live",
         type: "LiveStream",
         target: this.element,
-        constraints: constraints
+        constraints: constraints,
+        willReadFrequently: true
       },
       decoder: {
         readers: ["ean_reader", "upc_reader"],
@@ -40,7 +41,7 @@ export default class extends Controller {
         return;
       }
 
-      console.log("Initialization finished with version Barcode. Ready to start");
+      console.log("Initialization finished with version WRF. Ready to start");
       Quagga.start();
     });
 
