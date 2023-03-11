@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_08_212435) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_11_155818) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -39,7 +39,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_08_212435) do
     t.string "retail_price"
     t.string "category"
     t.text "ingredients"
-    t.string "color"
     t.decimal "user_rating"
     t.string "bonus_points"
     t.datetime "created_at", null: false
@@ -47,6 +46,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_08_212435) do
     t.string "barcode"
     t.string "image_url"
     t.string "alt_text"
+    t.string "how_to"
+    t.string "benefits"
   end
 
   create_table "users", force: :cascade do |t|
@@ -61,9 +62,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_08_212435) do
     t.string "avatar_url"
     t.string "provider"
     t.string "uid"
-    t.float "latitude"
-    t.float "longitude"
-    t.string "sephora_store_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["provider", "uid"], name: "index_users_on_provider_and_uid", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
