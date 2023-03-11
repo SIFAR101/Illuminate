@@ -36,7 +36,8 @@
     <% end %>
     <h3 class="mt-3"><%= @product.retail_price == "$0.00" ? "Ask store associate" : @product.retail_price  %></h3>
     <p><%= @product.description.html_safe %></p>
-    <p><strong>Color:</strong> <%= @product.color.nil? ? "Ask store associate" : @product.color %></p>
+    <p><%= @product.how_to.html_safe %></p>
+    <p><%= @product.benefits.html_safe %></p>
     <p><strong>Ingredients:</strong> <%= @product.ingredients.html_safe %></p>
     <p><strong>Bonus Points:</strong> <%= @product.bonus_points.html_safe %></p>
   </div>
