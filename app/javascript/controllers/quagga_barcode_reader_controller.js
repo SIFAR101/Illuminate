@@ -56,9 +56,6 @@ export default class extends Controller {
             document.getElementById('barcode-form').submit();
           }
 
-          if (window.navigator.vibrate) {
-            window.navigator.vibrate(100);
-          }
           console.log("Barcode detected and processed: " + data.codeResult.code, data);
 
           processedCode = true;

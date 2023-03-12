@@ -30,8 +30,8 @@ class ProductsController < ApplicationController
       @product = find_product_details(@product['data']['attributes']['product-id'])
       @product = @product['data']['attributes']
       @product = Product.new(image_url: ((@product['image-urls']).nil? ? nil : @product['image-urls'][0]), name: @product['name'] , brand: @product['brand-name'],
-                            description: @product['description'], ingredients: @product['ingredients'],
-                            retail_price: @product['display-price'], user_rating: @product['rating'],
+                            description: @product['description'], how_to: @product['how-to-text'], benefits: @product['benefits'],
+                            ingredients: @product['ingredients'], retail_price: @product['display-price'], user_rating: @product['rating'],
                             bonus_points: @product['additional-info'], barcode: params[:query])
       # Flash alert needs to be created
       puts @product.valid?
@@ -85,11 +85,11 @@ class ProductsController < ApplicationController
     session[:user_return_to] = request.fullpath if current_user.nil?
   end
 
-  def product_params
-    params.require(:product).permit(:name, :brand, :description, :retail_price,
-                                    :category, :ingredients, :color, :user_rating,
-                                    :bonus_points)
-  end
+  # def product_params
+  #   params.require(:product).permit(:name, :brand, :description, :retail_price,
+  #                                   :category, :ingredients, :color, :user_rating,
+  #                                   :bonus_points)
+  # end
 
   def request_api(url)
     response = Excon.get(

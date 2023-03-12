@@ -1,27 +1,19 @@
-<div id="quagga-barcode-result">Barcode will be displayed here</div>
-<div class="container" data-controller="quagga-barcode-reader">
 
-   <section class="container" id="scanner-content">
-      <%# <div>
-        <a class="button" id="startButton">Start</a>
-        <a class="button" id="resetButton">Reset</a>
-      </div> %>
+<div class="container" data-controller="barcode-reader">
+  <section class="container" id="scanner-content">
+    <div id="video-container">
+      <video id="video"></video>
+    </div>
+  </section>
 
-      <div id="video-container">
-        <video id="video"></video>
-      </div>
-    </section>
-
-    <%# This is the barcode form. Not hiding it yet so that we can see what's going on. Will be hidden from view. %>
-    <div class="search-container">
-      <%= form_with url: search_products_path, method: :get, local: true, id: "barcode-form" do %>
-      <div class="form-input d-flex flex-column align-items-center">
-        <%= text_field_tag :query,
-            params[:query],
-            class: "form-control rounded-3" ,
-            placeholder: "Enter the barcode" %>
-        <%= submit_tag "Search", class: "btn btn-dark rounded-3 mt-2" %>
-        <% end %>
-      </div>
+  <div class="search-container">
+    <%= form_with url: search_products_path, method: :get, local: true, id: "barcode-form" do %>
+    <div class="form-input d-flex flex-column align-items-center">
+      <%= text_field_tag :query,
+          params[:query],
+          class: "form-control rounded-3" %>
+      <%= submit_tag "Search", class: "btn btn-dark rounded-3 mt-2" %>
+      <% end %>
     </div>
   </div>
+</div>
