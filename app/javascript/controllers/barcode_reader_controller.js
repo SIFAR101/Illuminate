@@ -61,7 +61,7 @@ export default class extends Controller {
       .catch((e) => console.error(e));
 
     const stopScanner = () => {
-      const video = document.querySelector('video');
+      const video = this.videoTarget;
       const tracks = video.srcObject?.getTracks();
       tracks?.forEach(track => track.stop());
       console.log("Camera stopped.");
@@ -76,7 +76,7 @@ export default class extends Controller {
     document.addEventListener('visibilitychange', handleVisibilityChange);
 
     reader
-      .decodeFromInputVideoDevice(undefined, "video")
+      .decodeFromInputVideoDevice(undefined, this.videoTarget)
       .then((result) => {
         console.log("result", result.text);
         document.getElementById("query").value = result.text;
@@ -100,5 +100,10 @@ export default class extends Controller {
         console.error("error", error);
         stopScanner();
       });
+  }
+
+  disconnect() {
+    document.removeEventListener('visibilitychange', handleVisibilityChange);
+    this.stopScanner();
   }
 }
