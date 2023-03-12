@@ -53,35 +53,52 @@ export default class extends Controller {
     //       console.error(err)
     //     })
     // })
-    console.log("QR Code controller v2 loaded.")
 
+    console.log("QR Code controller v2 loaded.");
     const reader = new ZXing.BrowserQRCodeReader();
     EasySpeech.init({ maxTimeout: 5000, interval: 250 })
-            .then(() => console.debug('load complete'))
-            .catch(e => console.error(e))
+      .then(() => console.debug("load complete"))
+      .catch((e) => console.error(e));
 
-    window.addEventListener("load", function (){
-      reader
-      .decodeFromInputVideoDevice(undefined, 'video')
+    const stopScanner = () => {
+      const video = document.querySelector('video');
+      const tracks = video.srcObject?.getTracks();
+      tracks?.forEach(track => track.stop());
+      console.log("Camera stopped.");
+    };
+
+    const handleVisibilityChange = () => {
+      if (document.hidden) {
+        stopScanner();
+      }
+    };
+
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+
+    reader
+      .decodeFromInputVideoDevice(undefined, "video")
       .then((result) => {
-        console.log('result', result.text);
-        document.getElementById('query').value = result.text;
+        console.log("result", result.text);
+        document.getElementById("query").value = result.text;
 
-        const easySpeech = EasySpeech.detect()
-        const appVoice = window.speechSynthesis.getVoices()[10]
-        console.log('ES', easySpeech)
+        const easySpeech = EasySpeech.detect();
+        const appVoice = window.speechSynthesis.getVoices()[10];
+        console.log("ES", easySpeech);
         EasySpeech.speak({
-          text: 'Product found',
+          text: "Product found",
           voice: appVoice,
           pitch: 1,
           rate: 1,
           volume: 2,
-          boundary: e => console.debug('boundary reached')
-        })
-        reader.stopContinuousDecode();
+          boundary: (e) => console.debug("boundary reached"),
+        });
+
+        stopScanner();
         document.forms[0].submit();
       })
-      .catch((error) => console.error('error', error));
-    })
+      .catch((error) => {
+        console.error("error", error);
+        stopScanner();
+      });
   }
 }
