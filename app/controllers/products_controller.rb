@@ -9,11 +9,11 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
   end
 
-  # def favorite
-  #   @product = Product.find(params[:id])
-  #   current_user.favorite(@product)
-  #   redirect_to product_path(@product)
-  # end
+  def favorite
+    @product = Product.find(params[:id])
+    current_user.favorite(@product)
+    redirect_to product_path(@product)
+  end
 
   def new
     @product = Product.new
