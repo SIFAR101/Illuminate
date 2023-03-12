@@ -37,20 +37,62 @@
       <i class="fa-solid fa-star fs-2" style="color:#ffcc00;"></i>
     <% end %>
     <h2 class="mb-3"><%= @product.retail_price == "$0.00" ? "Ask store associate" : @product.retail_price  %></h2>
-    <ul class="product-menu">
-      <a class="btn btn-primary" href="#description"><li>Description</li></a>
-      <a class="btn btn-primary" href="#how-to"><li>How To</li></a>
-      <a class="btn btn-primary" href="#benefits"><li>Benefits</li></a>
-      <a class="btn btn-primary" href="#ingredients"><li>Ingredients</li></a>
-      <a class="btn btn-primary" href="#bonus"><li>Bonus</li></a>
-    </ul>
+    <div class="product-menu accordion accordion-flush" id="accordionFlushExample">
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="flush-headingOne">
+          <button class="btn btn-primary accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne" style='font-size: 1.5rem'>
+          Description
+          </button>
+        </h2>
+        <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+          <div class="accordion-body"> <%= @product.description.html_safe %></div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="flush-headingTwo">
+          <button class="btn btn-primary accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo" style='font-size: 1.5rem'>
+            How To
+          </button>
+        </h2>
+        <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+          <div class="accordion-body"><%= @product.how_to.html_safe %></div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="flush-headingThree">
+          <button class="btn btn-primary accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree" style='font-size: 1.5rem'>
+            Benefits
+          </button>
+        </h2>
+        <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+          <div class="accordion-body"><%= @product.benefits.html_safe %></div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="flush-headingFour">
+          <button class="btn btn-primary accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour" style='font-size: 1.5rem'>
+            Ingredients
+          </button>
+        </h2>
+        <div id="flush-collapseFour" class="accordion-collapse collapse" aria-labelledby="flush-headingFour" data-bs-parent="#accordionFlushExample">
+          <div class="accordion-body"><%= @product.ingredients.html_safe %></div>
+        </div>
+      </div>
 
-    <p id="description"><strong>Description</strong><br><%= @product.description.html_safe %></p>
-    <p id="how-to"><strong>How To</strong><br><%= @product.how_to.html_safe %></p>
-    <p id="benefits"><strong>Benefits</strong><br><%= @product.benefits.html_safe %></p>
-    <p id="ingredients"><strong>Ingredients</strong><br><%= @product.ingredients.html_safe %></p>
-    <p id="bonus"><strong>Bonus</strong><br><%= @product.bonus_points.html_safe %></p>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="flush-headingFive">
+          <button class="btn btn-primary accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFive" aria-expanded="false" aria-controls="flush-collapseFive" style='font-size: 1.5rem'>
+            Bonus Points
+          </button>
+        </h2>
+        <div id="flush-collapseFive" class="accordion-collapse collapse" aria-labelledby="flush-headingFive" data-bs-parent="#accordionFlushExample">
+          <div class="accordion-body"><%= @product.bonus_points.html_safe %></div>
+        </div>
+      </div>
+      </div>
+
   </div>
+
   <div class="buttons d-flex flex-row justify-content-center">
     <%= link_to 'New Scan', new_product_path, class: "btn btn-primary fs-2" %>
     <%= link_to 'Ask for Help', root_path, class: "btn btn-primary fs-2" %>
