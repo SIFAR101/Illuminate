@@ -45,11 +45,11 @@
       <a class="btn btn-primary" href="#bonus"><li>Bonus</li></a>
     </ul>
 
-    <p id="description"><strong>Description</strong><br><%= @product.description.html_safe %></p>
-    <p id="how-to"><strong>How To</strong><br><%= @product.how_to.html_safe %></p>
-    <p id="benefits"><strong>Benefits</strong><br><%= @product.benefits.html_safe %></p>
-    <p id="ingredients"><strong>Ingredients</strong><br><%= @product.ingredients.html_safe %></p>
-    <p id="bonus"><strong>Bonus</strong><br><%= @product.bonus_points.html_safe %></p>
+    <p id="description"><strong>Description</strong><br><%= @product.description.nil? ? "Ask store associate" : @product.description.html_safe %></p>
+    <p id="how-to"><strong>How To</strong><br><%= @product.how_to.nil? ? "Ask store associate" : @product.how_to.html_safe %></p>
+    <p id="benefits"><strong>Benefits</strong><br><%= @product.benefits.nil? ? "Ask store associate" : @product.benefits.html_safe %></p>
+    <p id="ingredients"><strong>Ingredients</strong><br><%= @product.ingredients.nil? ? "Ask store associate" : @product.ingredients.html_safe %></p>
+    <p id="bonus"><strong>Bonus</strong><br><%= @product.bonus_points.nil? ? "Ask store associate" : @product.bonus_points.html_safe %></p>
   </div>
   <div class="buttons d-flex flex-row justify-content-center">
     <%= link_to 'New Scan', new_product_path, class: "btn btn-primary fs-2" %>

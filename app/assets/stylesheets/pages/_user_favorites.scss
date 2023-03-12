@@ -1,0 +1,20 @@
+.favorite-cards {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  .card {
+    border: none;
+    border-radius: 3em;
+    margin: .5em;
+    box-shadow: 0 10px 30px rgba(0,0,0,.1);
+
+    &:hover {
+      box-shadow: 0 5px 20px rgba(0,0,0,.05);
+    }
+    &:active {
+      box-shadow: none;
+    }
+  }
+}
