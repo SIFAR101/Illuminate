@@ -44,6 +44,10 @@ class ProductsController < ApplicationController
     end
   end
 
+  def assistance
+    @stores = find_stores
+  end
+
   def error
   end
 
@@ -113,6 +117,10 @@ class ProductsController < ApplicationController
 
   def find_product_details(product_id)
     request_api("https://sephora.p.rapidapi.com/products/v2/detail?id=#{product_id}")
+  end
+
+  def find_stores
+    request_api("https://sephora.p.rapidapi.com/stores/list?latitude=33.9733&longitude=-118.2487&radius=25")
   end
 
 end

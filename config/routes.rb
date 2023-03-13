@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     omniauth_callbacks: 'users/omniauth_callbacks'
   }
 
+  get 'products/assistance', :to => 'products#assistance'
   resources :products do
     collection do
       get :search, :error, :user_favorites
