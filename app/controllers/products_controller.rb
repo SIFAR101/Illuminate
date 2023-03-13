@@ -71,8 +71,11 @@ class ProductsController < ApplicationController
 
   def user_favorites
     @products = []
-    @favorites = current_user.all_favorites
-    @favorites.each { |favorite| @products << Product.find(favorite.favoritable_id) }
+    @favorites = current_user.all_favorites.sort_by
+    @favorites.each do |favorite|
+      @products << Product.find(favorite.favoritable_id)
+    end
+    @products.sort_by! {|product| product.brand}
   end
 
   private

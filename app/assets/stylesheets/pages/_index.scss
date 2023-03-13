@@ -2,6 +2,7 @@
 @import "home";
 @import "products_new";
 @import "products_show";
+@import "user_favorites";
 
 
 .container {
@@ -16,5 +17,3 @@ h1, h2 { font-weight: bold; }
 h1 { font-size: 2.75em; }
 
 h2 { font-size: 2em; }
-
-p, li { font-size: 1.5em; }

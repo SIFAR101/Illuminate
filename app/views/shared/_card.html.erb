@@ -1,0 +1,9 @@
+<%= link_to product_path(product) do %>
+  <div class="card rounded-3" style="width: 20rem;">
+    <img src="<%= product.image_url %>" class="card-img-top rounded-circle w-50 align-self-center" alt="<%= product.alt_text %>">
+    <div class="card-body">
+      <div class="card-title fs-5"><strong><%= product.name.titleize %></strong></div>
+      <div class="card-subtitle"><%= product.brand.titleize %></p></div>
+    </div>
+  </div>
+<% end %>
