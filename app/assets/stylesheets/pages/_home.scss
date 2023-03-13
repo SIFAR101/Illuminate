@@ -3,7 +3,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  min-height: 100vh;
   width: 100%;
   padding: 0 0vw;
 
@@ -24,16 +24,32 @@
     text-align: center;
   }
 
+  .wave-container {
+    position: relative;
+    #intro-box {
+      position: absolute;
+      top: 10vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    p {
+      text-align: center;
+      color: white;
+      padding: 0 8vw;
+    }
+    .btn.btn-light:hover {
+      background-color: rgb(255, 255, 255);
+    }
+  }
+
   .download-btn {
     margin-bottom: 5em;
   }
 
 .tagline {
   margin-bottom: 30px;
-}
-
-#page-two {
-  width: 60vw;
 }
 
 .intro {
@@ -48,6 +64,7 @@
 
 .headline {
   position: relative;
+  padding-top: 10vh;
 }
 
 .headline::after {

@@ -4,34 +4,34 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   connect() {
 
-    anime({
-      targets: document.querySelector('.download-btn'),
-      scale: [1, 1.2],
-      duration: 1000,
-      direction: 'alternate',
-      loop: true,
-      easing: 'linear',
-    });
+    // anime({
+    //   targets: document.querySelector('.download-btn'),
+    //   scale: [1, 1.2],
+    //   duration: 1000,
+    //   direction: 'alternate',
+    //   loop: true,
+    //   easing: 'linear',
+    // });
 
     // Hovering animation on button "Learn more"
 
-    const button = document.querySelector('.learn-btn');
-    button.addEventListener('mouseenter', () => {
-      anime({
-        targets: button,
-        scale: 1.1,
-        duration: 200,
-        easing: 'linear'
-      });
-    });
-    button.addEventListener('mouseleave', () => {
-      anime({
-        targets: button,
-        scale: 1,
-        duration: 200,
-        easing: 'linear'
-      });
-    });
+    // const button = document.querySelector('.learn-btn');
+    // button.addEventListener('mouseenter', () => {
+    //   anime({
+    //     targets: button,
+    //     scale: 1.1,
+    //     duration: 200,
+    //     easing: 'linear'
+    //   });
+    // });
+    // button.addEventListener('mouseleave', () => {
+    //   anime({
+    //     targets: button,
+    //     scale: 1,
+    //     duration: 200,
+    //     easing: 'linear'
+    //   });
+    // });
 
     // Illuminate reflection animation
 
