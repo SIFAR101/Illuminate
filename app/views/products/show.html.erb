@@ -45,7 +45,7 @@
           </button>
         </h2>
         <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-          <div class="accordion-body"> <%= @product.description.html_safe %></div>
+          <div class="accordion-body"><%= @product.description.nil? ? "Ask store associate" : @product.description.html_safe %></div>
         </div>
       </div>
       <div class="accordion-item">
@@ -55,7 +55,7 @@
           </button>
         </h2>
         <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
-          <div class="accordion-body"><%= @product.how_to.html_safe %></div>
+          <div class="accordion-body"><%= @product.how_to.nil? ? "Ask store associate" : @product.how_to.html_safe %></div>
         </div>
       </div>
       <div class="accordion-item">
@@ -65,7 +65,7 @@
           </button>
         </h2>
         <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
-          <div class="accordion-body"><%= @product.benefits.html_safe %></div>
+          <div class="accordion-body"><%= @product.benefits.nil? ? "Ask store associate" : @product.benefits.html_safe %></div>
         </div>
       </div>
       <div class="accordion-item">
@@ -75,7 +75,7 @@
           </button>
         </h2>
         <div id="flush-collapseFour" class="accordion-collapse collapse" aria-labelledby="flush-headingFour" data-bs-parent="#accordionFlushExample">
-          <div class="accordion-body"><%= @product.ingredients.html_safe %></div>
+          <div class="accordion-body"><%= @product.ingredients.nil? ? "Ask store associate" : @product.ingredients.html_safe %></div>
         </div>
       </div>
 
@@ -86,7 +86,7 @@
           </button>
         </h2>
         <div id="flush-collapseFive" class="accordion-collapse collapse" aria-labelledby="flush-headingFive" data-bs-parent="#accordionFlushExample">
-          <div class="accordion-body"><%= @product.bonus_points.html_safe %></div>
+          <div class="accordion-body"><%= @product.bonus_points.nil? ? "Ask store associate" : @product.bonus_points.html_safe %></div>
         </div>
       </div>
       </div>
