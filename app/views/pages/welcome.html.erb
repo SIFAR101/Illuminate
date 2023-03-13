@@ -41,10 +41,12 @@
 
   </div>
 
+<% unless user_signed_in? %>
   <div class="text-center" style='margin: 20px auto;'>
     <div class="button-container my-3" style="max-width: 400px; margin: 0 auto;">
       <%= link_to 'Sign Up', new_user_registration_path, class: 'btn btn-lg btn-dark rounded-sm' %>
       <%= link_to 'Login', new_user_session_path, class: 'btn btn-lg btn-outline-dark rounded-sm' %>
     </div>
   </div>
+  <% end %>
 </div>

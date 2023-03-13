@@ -1,87 +1,88 @@
 import { Controller } from "@hotwired/stimulus";
-import EasySpeech from "easy-speech"
+import EasySpeech from "easy-speech";
 
 export default class extends Controller {
   connect() {
-    // const header = document.querySelector('h1')
-    // console.log('Barcode Controller 1 loaded.')
-    // window.addEventListener('load', function () {
-    //   const codeReader = new ZXing.BrowserMultiFormatReader();
+    console.log("QR Code controller v2 loaded.");
+    this.startCamera();
 
-    //   codeReader.listVideoInputDevices()
-    //     .then((videoInputDevices) => {
-    //       const sourceSelect = document.getElementById('sourceSelect');
+    const observer = new MutationObserver((mutationsList) => {
+      for (const mutation of mutationsList) {
+        if (mutation.type === "childList") {
+          for (const addedNode of mutation.addedNodes) {
+            if (addedNode.id === "video-container") {
+              this.startCamera();
+              return;
+            }
+          }
+        }
+      }
+      this.stopCamera();
+    });
 
-    //       let selectedDeviceId;
-    //       let maxResolution = 0;
+    observer.observe(document.documentElement, {
+      childList: true,
+      subtree: true,
+    });
+  }
 
-    //       videoInputDevices.forEach((device) => {
-    //         if (device.label.indexOf("facing back") >= 0) {
-    //           // Prefer back-facing cameras
-    //           const { width, height } = device.videoConstraints;
-    //           const resolution = width * height;
-    //           if (resolution > maxResolution) {
-    //             selectedDeviceId = device.deviceId;
-    //             maxResolution = resolution;
-    //           }
-    //         }
-    //       });
+  disconnect() {
+    this.stopCamera();
+    console.log("Camera stopped on page change.");
+  }
 
-    //       if (!selectedDeviceId) {
-    //         // If no back-facing camera found, select the first device
-    //         selectedDeviceId = videoInputDevices[0].deviceId;
-    //       }
-
-
-    //         codeReader.decodeFromVideoDevice(selectedDeviceId, 'video', (result, err) => {
-    //           if (result) {
-    //             console.log('result', result)
-    //             document.getElementById('query').textContent = result.text
-    //             // document.getElementById('barcode-form').submit()
-    //           }
-    //           if (err && !(err instanceof ZXing.NotFoundException)) {
-    //             console.error(err)
-    //             document.getElementById('result').textContent = err
-    //             codeReader.reset()
-    //             document.getElementById('result').textContent = '';
-    //             console.log('Reset.')
-    //           }
-    //         })
-    //         console.log(`Started continuous decode from camera with id ${selectedDeviceId}`)
-    //     })
-    //     .catch((err) => {
-    //       console.error(err)
-    //     })
-    // })
-    console.log("QR Code controller v2 loaded.")
-
+  startCamera() {
     const reader = new ZXing.BrowserQRCodeReader();
     EasySpeech.init({ maxTimeout: 5000, interval: 250 })
-            .then(() => console.debug('load complete'))
-            .catch(e => console.error(e))
+      .then(() => console.debug("load complete"))
+      .catch((e) => console.error(e));
 
-    window.addEventListener("load", function (){
-      reader
-      .decodeFromInputVideoDevice(undefined, 'video')
+    const stopScanner = () => {
+      const video = document.querySelector("video");
+      const tracks = video.srcObject?.getTracks();
+      tracks?.forEach((track) => track.stop());
+      console.log("Camera stopped.");
+    };
+
+    const handleVisibilityChange = () => {
+      if (document.hidden) {
+        stopScanner();
+      }
+    };
+
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+
+    reader
+      .decodeFromInputVideoDevice(undefined, "video")
       .then((result) => {
-        console.log('result', result.text);
-        document.getElementById('query').value = result.text;
+        console.log("result", result.text);
+        document.getElementById("query").value = result.text;
 
-        const easySpeech = EasySpeech.detect()
-        const appVoice = window.speechSynthesis.getVoices()[10]
-        console.log('ES', easySpeech)
+        const easySpeech = EasySpeech.detect();
+        const appVoice = window.speechSynthesis.getVoices()[10];
+        console.log("ES", easySpeech);
         EasySpeech.speak({
-          text: 'Product found',
+          text: "Product found",
           voice: appVoice,
           pitch: 1,
           rate: 1,
           volume: 2,
-          boundary: e => console.debug('boundary reached')
-        })
-        reader.stopContinuousDecode();
+          boundary: (e) => console.debug("boundary reached"),
+        });
+
+        stopScanner();
         document.forms[0].submit();
       })
-      .catch((error) => console.error('error', error));
-    })
+      .catch((error) => {
+        console.error("error", error);
+        stopScanner();
+      });
+  }
+
+  stopCamera() {
+    const video = document.querySelector("video");
+    const tracks = video.srcObject?.getTracks();
+    tracks?.forEach((track) => track.stop());
+    console.log("Camera stopped.");
   }
 }
