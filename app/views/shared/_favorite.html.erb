@@ -1,0 +1,25 @@
+<!-- If the user is signed in, show the 'Add to favorite' feature -->
+<div class="favorite-container" data-controller="favorite"
+     data-favorite-product-value="<%= @product.to_json %>"
+     data-favorite-user-value="<%= current_user.to_json %>">
+  <% if user_signed_in? %>
+    <% if current_user.favorited?(@product) %>
+        <i id="favorited-heart" class="fa-solid fa-heart"></i>
+        <p id ="favorited-text" class="text-center">This product is in your favorites!</p>
+    <% else %>
+      <%= link_to favorite_product_path(@product),
+        class: "favorite-container d-flex flex-column align-items-center",
+        data: { target: "favorite.heart", action: "click->favorite#addToFavorites" } do %>
+        <i id="favorite-heart" class="fa-solid fa-heart"></i>
+        <p class="text-center">Add to your favorites</p>
+      <% end %>
+    <% end %>
+
+  <!-- Else, ask them to sign up or login -->
+  <% else %>
+    <%= link_to new_user_session_path, class: "d-flex flex-column align-items-center" do %>
+      <i id="favorite-heart" class="fa-solid fa-heart"></i>
+      <p class="text-center"> <strong><u>Login to save this product.</u></strong></p>
+    <% end %>
+  <% end %>
+</div>

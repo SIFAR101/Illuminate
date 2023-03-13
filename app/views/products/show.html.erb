@@ -5,30 +5,7 @@
     <% else %>
       <img id="product-hero" class="bg-white shadow-lg rounded-circle" style="width:250px;" src=<%= @product.image_url%> alt=<%= "Image of #{@product.name} by #{@product.brand}" %>>
     <% end %>
-    <!-- If the user is signed in, show the 'Add to favorite' feature -->
-    <% if user_signed_in? %>
-      <% if current_user.favorited?(@product) %>
-        <div class="favorite-container">
-          <i id="favorited-heart" class="fa-solid fa-heart"></i>
-          <p id ="favorited-text" class="text-center">This product is in your favorites!</p>
-        </div>
-      <% else %>
-        <%= link_to favorite_product_path(@product), class: "favorite-container d-flex flex-column align-items-center" do %>
-            <i id="favorite-heart" class="fa-solid fa-heart"></i>
-            <p class="text-center">Add to your favorites</p>
-        <% end %>
-      <% end %>
-
-    <!-- Else, ask them to sign up or login -->
-
-    <% else %>
-    <div class="favorite-container">
-      <%= link_to new_user_session_path, class: "d-flex flex-column align-items-center" do %>
-        <i id="favorite-heart" class="fa-solid fa-heart"></i>
-        <p class="text-center"> <strong><u>Login to save this product.</u></strong></p>
-      <% end %>
-    </div>
-    <% end %>
+    <%= render "shared/favorite" %>
   </div>
   <div class="product-details shadow-lg">
     <h1><%= @product.name.titleize %></h1>
