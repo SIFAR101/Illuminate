@@ -8,7 +8,7 @@ export default class extends Controller {
   }
 
   connect() {
-    console.log("sortable controller connected")
+    console.log("Map controller v6 connected")
     mapboxgl.accessToken = this.apiKeyValue
 
     const map = new mapboxgl.Map({
@@ -19,8 +19,7 @@ export default class extends Controller {
       zoom: 1 // starting zoom
       });
 
-    map.addControl(
-      new mapboxgl.GeolocateControl({
+    const geolocate = new mapboxgl.GeolocateControl({
       positionOptions: {
       enableHighAccuracy: true
       },
@@ -29,23 +28,22 @@ export default class extends Controller {
       // Draw an arrow next to the location dot to indicate which direction the device is heading.
       showUserHeading: true
       })
-    );
+
+      map.addControl(geolocate);
+
+      geolocate.on('geolocate', (e) => {
+        const userCoords = [e.coords.longitude, e.coords.latitude]
+        console.log('coords', userCoords)
+        this.fetchStores(userCoords[0], userCoords[1])
+
+      })
   }
 
-  fetchStores() {
-    const options = {
-      method: 'GET',
-      headers: {
-        'X-RapidAPI-Key': 'a7fa530355mshba4e0f21281f064p1daf8fjsn38e1d307e269',
-        'X-RapidAPI-Host': 'sephora.p.rapidapi.com'
-      }
-    };
+  fetchStores(lng, lat) {
 
-    fetch('https://sephora.p.rapidapi.com/stores/list?latitude=33.9733&longitude=-118.2487&radius=25', options)
+    fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/sephora.json?proximity=${lng},${lat}&access_token=${mapboxgl.accessToken}`)
 	    .then(response => response.json())
 	    .then(response => console.log(response))
 	    .catch(err => console.error(err));
   }
-
-  fetchStores()
 }
