@@ -3,7 +3,7 @@
     <% if @product.image_url.nil? %>
       <%= image_tag "cream.png", alt: "Product image not available", id: "product-hero", class: "bg-white shadow-lg rounded-circle", width: 250 %>
     <% else %>
-      <img id="product-hero" class="bg-white shadow-lg rounded-circle" style="width:250px;" src=<%= @product.image_url%> alt=<%= "Image of #{@product.name} by #{@product.brand}" %>>
+      <img id="product-hero" class="bg-white shadow-lg rounded-circle" alt='A picture of the product you selected' style="width:250px;" src=<%= @product.image_url%> alt=<%= "Image of #{@product.name} by #{@product.brand}" %>>
     <% end %>
     <%= render "shared/favorite" %>
   </div>
