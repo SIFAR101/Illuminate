@@ -1,5 +1,13 @@
-<div id="map" style="width: 100%; height: 600px;"
-  data-controller="map"
-  data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
+<div class="container">
+  <div id="map" style="width: 100%; height: 600px;"
+    data-controller="map"
+    data-map-api-key-value="<%= ENV['GOOGLE_MAP_API_KEY'] %>"></div>
 
-<div></div>
+    <!--
+        The `defer` attribute causes the callback to execute after the full HTML
+        document has been parsed. For non-blocking uses, avoiding race conditions,
+        and consistent behavior across browsers, consider loading using Promises
+        with https://www.npmjs.com/package/@googlemaps/js-api-loader.
+        -->
+  <div></div>
+</div>
