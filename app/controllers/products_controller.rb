@@ -23,26 +23,46 @@ class ProductsController < ApplicationController
     # Search method to display data returned from API w/o creating the product.
     if Product.exists?(barcode: params[:query].to_s)
       redirect_to product_path(Product.find_by(barcode: params[:query]).id)
-    elsif find_product(params[:query]).nil?
-      redirect_to error_products_path
     else
-      @product = find_product(params[:query])
-      @product = find_product_details(@product['data']['attributes']['product-id'])
-      @product = @product['data']['attributes']
-      @product = Product.new(image_url: ((@product['image-urls']).nil? ? nil : @product['image-urls'][0]), name: @product['name'] , brand: @product['brand-name'],
-                            description: @product['description'], how_to: @product['how-to-text'], benefits: @product['benefits'],
-                            ingredients: @product['ingredients'], retail_price: @product['display-price'], user_rating: @product['rating'],
-                            bonus_points: @product['additional-info'], barcode: params[:query])
-      # Flash alert needs to be created
-      puts @product.valid?
-      if @product.save
-        redirect_to product_path(@product)
-      else
-      # flash[:alert] = "Product not found"
+      product_data = find_product(params[:query])
+      if product_data.nil? || product_data['data'].nil? || product_data['data']['attributes'].nil?
         redirect_to error_products_path
+      else
+        product_id = product_data['data']['attributes']['product-id']
+        product_details = find_product_details(product_id)
+        if product_details.nil?
+          redirect_to error_products_path
+        else
+          product_details = product_details['data']['attributes']
+          @product = Product.new(
+            image_url: product_details['image-urls']&.first,
+            name: product_details['name'],
+            brand: product_details['brand-name'],
+            description: product_details['description'],
+            how_to: product_details['how-to-text'],
+            benefits: product_details['benefits'],
+            ingredients: product_details['ingredients'],
+            retail_price: product_details['display-price'],
+            user_rating: product_details['rating'],
+            bonus_points: product_details['additional-info'],
+            barcode: params[:query]
+          )
+          # Flash alert needs to be created
+          puts @product.valid?
+          if @product.save
+            redirect_to product_path(@product)
+          else
+            # flash[:alert] = "Product not found"
+            redirect_to error_products_path
+          end
+        end
       end
     end
   end
+
+
+
+
 
   def assistance
     @stores = find_stores
