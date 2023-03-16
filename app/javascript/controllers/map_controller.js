@@ -39,7 +39,7 @@ export default class extends Controller {
   //     })
   // }
   connect() {
-    console.log('Google Maps controller v5 is loaded.')
+    console.log('Google Maps controller v6 is loaded.')
     const loader = new Loader({
       apiKey: this.apiKeyValue,
       version: "weekly",
@@ -64,7 +64,6 @@ export default class extends Controller {
               lat: position.coords.latitude,
               lng: position.coords.longitude,
             };
-            map.setCenter(userPos);
           },
           () => { handleLocationError(true, infoWindow, map.getCenter()); }
         );
@@ -100,17 +99,16 @@ export default class extends Controller {
                 map,
                 position: place.geometry.location,
               })
-              google.maps.event.addListener(marker, "click", () => {
-                const content =
-                `<div class="infoWindow">
-                  <h3>Sephora</h3>
-                  <h3 class="fw-light text-primary"><a class="text-primary" href="tel:${place.formatted_phone_number}"><i class="fa-solid fa-phone fs-4 text-primary"></i> ${place.formatted_phone_number}</a></h3>
-                  <h4 class="fw-light">${place.formatted_address}</h4>
-                </div>`
+              map.setCenter(marker)
+              const content =
+              `<div class="infoWindow">
+                <h3>Sephora</h3>
+                <h3 class="fw-light text-primary"><a class="text-primary" aria-label="Call this Sephora location." href="tel:${place.formatted_phone_number}"><i class="fa-solid fa-phone fs-4 text-primary"></i> ${place.formatted_phone_number}</a></h3>
+                <h4 class="fw-light">${place.formatted_address}</h4>
+              </div>`
 
-                infoWindow.setContent(content);
-                infoWindow.open(map, marker);
-              });
+              infoWindow.setContent(content);
+              infoWindow.open(map, marker);
             }
           });
         }
