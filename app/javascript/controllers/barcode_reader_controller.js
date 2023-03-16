@@ -59,7 +59,7 @@ export default class extends Controller {
         document.getElementById("query").value = result.text;
 
         const easySpeech = EasySpeech.detect();
-        const appVoice = window.speechSynthesis.getVoices()[10];
+        const appVoice = EasySpeech.voices()[0]
         console.log("ES", easySpeech);
         EasySpeech.speak({
           text: "Product found",
