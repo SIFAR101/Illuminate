@@ -1,5 +1,5 @@
 <div class="container" data-controller="homepage-web">
-  <div id="page-one" class="homepage">
+  <div class="homepage">
     <h1 class="headline" style="font-family: Atkinson Hyperlegible;" aria-label="illuminate">
       <span class="letter" aria-hidden="true">i</span>
       <span class="letter" aria-hidden="true">l</span>
@@ -14,46 +14,29 @@
     </h1>
 
     <h2 class="text-center tagline">Enhancing the beauty journey for all.</h2>
-    <%= image_tag "illuminate_phone_mockup.png", width: 600, alt: 'A picture of the Illuminate app on a phone screen' %>
+    <%= image_tag "illuminate_phone_mockup.png", id: "homepage-img", alt: 'A picture of the Illuminate app on a phone screen' %>
+    <%= link_to "Learn More", "#about-section", class: "btn btn-primary btn-lg m-2" %>
     <div class="intro">
       <div class="wave-container">
-        <svg width="1440" height="462" viewBox="0 0 1440 462" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <g id="Rectangle 14" filter="url(#filter0_d_188_45)">
-            <path d="M0 4.26816C0 4.26816 411.72 90.6883 720 36.675C1028.28 -17.3383 1440 4.26816 1440 4.26816V426.223C1440 426.223 1120.62 363.724 720 426.223C319.385 488.721 0 426.223 0 426.223V4.26816Z" fill="url(#paint0_diamond_188_45)"/>
-            <path d="M1439.5 4.74315V425.618C1439.4 425.599 1439.29 425.578 1439.16 425.554C1438.55 425.438 1437.62 425.266 1436.4 425.044C1433.97 424.601 1430.34 423.96 1425.58 423.166C1416.06 421.579 1402.01 419.381 1383.9 416.938C1347.69 412.054 1295.24 406.194 1230.26 402.287C1100.31 394.473 920.274 394.473 719.923 425.729C519.659 456.971 339.696 456.971 209.799 449.161C144.851 445.255 92.4214 439.397 56.2303 434.516C38.1348 432.076 24.099 429.879 14.5883 428.293C9.83287 427.5 6.20873 426.86 3.77397 426.418C2.55659 426.196 1.63656 426.025 1.02115 425.909C0.812233 425.869 0.638423 425.836 0.5 425.81V4.88271C0.66373 4.91655 0.860504 4.95711 1.08993 5.00421C1.87909 5.16623 3.05461 5.40572 4.60077 5.71576C7.69309 6.33584 12.268 7.23812 18.1997 8.36722C30.0631 10.6254 47.3539 13.7909 69.0657 17.4205C112.489 24.6797 173.598 33.7959 244.343 41.2238C385.823 56.0788 565.878 64.1862 720.086 37.1675C874.186 10.1679 1054.15 2.06651 1195.61 0.716555C1266.33 0.0416048 1327.43 1.0544 1370.84 2.23592C1392.54 2.82668 1409.83 3.45961 1421.69 3.94484C1427.62 4.18745 1432.19 4.39313 1435.28 4.53815C1436.82 4.61066 1438 4.668 1438.78 4.70721C1439.08 4.72172 1439.31 4.73375 1439.5 4.74315Z" stroke="black"/>
-          </g>
-          <defs>
-            <filter id="filter0_d_188_45" x="0" y="0" width="1448" height="462" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-              <feFlood flood-opacity="0" result="BackgroundImageFix"/>
-              <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
-              <feOffset dx="4" dy="4"/>
-              <feGaussianBlur stdDeviation="2"/>
-              <feComposite in2="hardAlpha" operator="out"/>
-              <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
-              <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_188_45"/>
-              <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_188_45" result="shape"/>
-            </filter>
-            <radialGradient id="paint0_diamond_188_45" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1440 139.65) rotate(172.699) scale(1574.59 477.208)">
-              <stop stop-color="#5D59FF"/>
-              <stop offset="1" stop-color="#221FB8"/>
-            </radialGradient>
-          </defs>
-        </svg>
         <div id="intro-box">
-          <p class="paragraph-intro" data-sr="enter left, move 30px, over 1s, wait 0.7s">Illuminate provides a way for those who are visually-impaired
+          <p id="about-section" data-sr="enter left, move 30px, over 1s, wait 0.7s">Illuminate provides a way for those who are visually-impaired
           to discover beauty products using a quick QR scan from their mobile device.</p>
-          <div class='d-flex items-align-center'>
-          <%= link_to "Get started", new_user_registration_path, class: "btn btn-light btn-lg text-primary m-2" %>
-          <%= link_to "Learn More", "#about-paragraph", class: "btn btn-light btn-lg text-primary m-2" %>
+          <div class='d-flex flex-row justify-content-center mt-2'>
+            <% if user_signed_in? %>
+              <%= link_to "Get started", new_product_path, class: "btn btn-light btn-lg text-primary m-2" %>
+            <% else %>
+              <%= link_to "Get started", new_user_registration_path, class: "btn btn-light btn-lg text-primary m-2" %>
+            <% end %>
           </div>
         </div>
       </div>
 
-      <p class="paragraph-intro" id='about-paragraph' data-sr="enter left, move 30px, over 1s, wait 0.7s">Once scanned, users can listen to a product summary including its
+      <p class="paragraph-intro" data-sr="enter left, move 30px, over 1s, wait 0.7s">Once scanned, users can listen to a product summary including its
       description, price and ingredients list. If they like what they hear,
       that can save the product to their account.</p>
 
       <p class="paragraph-intro" data-sr="enter left, move 30px, over 1s, wait 0.7s">If a user needs assistance, they can call the beauty store directly
       from the app to speak with an employee. It's really that easy! If you'd like to get your products on Illuminate, <a class="text-primary" href="mailto:hello@dari.codes" target="_blank">get in touch!</a></p>
     </div>
+  </div>
 </div>
