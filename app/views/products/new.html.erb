@@ -7,15 +7,22 @@
   </section>
 
   <div class="search-container">
-    <h4 id="scan-info" class="animate__animated animate__flash animate__slower animate__infinite">
+    <h4 id="scan-info" class="animate__animated animate__flash animate__slower animate__infinite" aria-label='scanning in progress'>
         <i class="fa-solid fa-qrcode"></i><br/>Scanning</h4>
+        <p class="sr-only">Place the product in front of the camera and rotate it slowly to find the QR code.</p>
+        <p class="sr-only">If no product is found, you can call for assistance using the button below.</p>
+        <%= link_to "Call for Assistance", products_assistance_path, class: "btn btn-dark rounded-3 mt-2", style: 'margin-left: 1vw;' %>
+
+
     <%= form_with url: search_products_path, method: :get, local: true, id: "barcode-form" do %>
     <div class="form-input d-flex flex-column align-items-center">
       <%= text_field_tag :query,
           params[:query],
           class: "form-control rounded-3" %>
       <%= submit_tag "Search", class: "btn btn-dark rounded-3 mt-2" %>
+
       <% end %>
+
     </div>
   </div>
 </div>
