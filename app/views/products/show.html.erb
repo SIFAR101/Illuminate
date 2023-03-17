@@ -13,6 +13,8 @@
     <% (@product.user_rating.to_i).times do %>
       <i class="fa-solid fa-star fs-2" style="color:#ffcc00;"></i>
     <% end %>
+    <p class="sr-only">User rating: <%= (@product.user_rating.to_i) %>out of 5</p>
+
     <h2 class="mb-3"><%= @product.retail_price == "$0.00" ? "Ask store associate" : @product.retail_price  %></h2>
     <div class="product-menu accordion accordion-flush" id="accordionFlushExample">
       <div class="accordion-item">
