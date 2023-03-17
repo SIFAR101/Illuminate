@@ -3,6 +3,7 @@
      data-favorite-product-value="<%= @product.to_json %>"
      data-favorite-user-value="<%= current_user.to_json %>">
   <% if user_signed_in? %>
+
     <% if current_user.favorited?(@product) %>
         <i id="favorited-heart" class="fa-solid fa-heart"></i>
         <p id ="favorited-text" class="text-center" role='button'>Remove from your favorites</p>
@@ -13,7 +14,15 @@
         <i id="favorite-heart" class="fa-solid fa-heart"></i>
         <p class="text-center">Add to your favorites</p>
       <% end %>
+
+    <% else %>
+      <%= button_to favorite_product_path(@product), class: 'standard-button-to', method: :post do %>
+          <i id="favorite-heart" class="fa-solid fa-heart"></i>
+          <p class="text-center">Add to your favorites</p>
+      <% end %>
     <% end %>
+
+
 
   <!-- Else, ask them to sign up or login -->
   <% else %>

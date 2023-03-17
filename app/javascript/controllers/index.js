@@ -18,6 +18,3 @@ application.register("homepage-web", HomepageWebController)
 
 import MapController from "./map_controller"
 application.register("map", MapController)
-
-import QuaggaBarcodeReaderController from "./quagga_barcode_reader_controller"
-application.register("quagga-barcode-reader", QuaggaBarcodeReaderController)

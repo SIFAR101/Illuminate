@@ -1,8 +1,8 @@
-// import { Controller } from "@hotwired/stimulus"
+import { Controller } from "@hotwired/stimulus"
 
-// // Connects to data-controller="homepage-app"
-// export default class extends Controller {
-//   connect() {
+// Connects to data-controller="homepage-app"
+export default class extends Controller {
+  connect() {
 
 //     // anime({
 //     //   targets: document.querySelector('.download-btn'),
@@ -35,36 +35,36 @@
 
 //     // Illuminate reflection animation
 
-//     const headline = document.querySelector('.headline');
-//     const headlineWidth = headline.offsetWidth;
+    const headline = document.querySelector('.headline');
+    const headlineWidth = headline.offsetWidth;
 
-//     headline.addEventListener('mouseenter', () => {
-//       anime({
-//         targets: headline.querySelector('::after'),
-//         width: headlineWidth,
-//       });
-//     });
+    headline.addEventListener('mouseenter', () => {
+      anime({
+        targets: headline.querySelector('::after'),
+        width: headlineWidth,
+      });
+    });
 
-//     headline.addEventListener('mouseleave', () => {
-//       anime({
-//         targets: headline.querySelector('::after'),
-//         width: 0,
-//       });
-//     });
+    headline.addEventListener('mouseleave', () => {
+      anime({
+        targets: headline.querySelector('::after'),
+        width: 0,
+      });
+    });
 
-//     const letters = document.querySelectorAll('.letter');
+    const letters = document.querySelectorAll('.letter');
 
-//     letters.forEach((letter) => {
-//       anime({
-//         targets: letter,
-//         opacity: [0.3, 1],
-//         easing: 'linear',
-//         direction: 'alternate',
-//         loop: true,
-//         duration: 1000,
-//         delay: anime.random(0, 1000),
-//       });
-//     });
+    letters.forEach((letter) => {
+      anime({
+        targets: letter,
+        opacity: [0.3, 1],
+        easing: 'linear',
+        direction: 'alternate',
+        loop: true,
+        duration: 1000,
+        delay: anime.random(0, 1000),
+      });
+    });
 
-//   }
-// }
+  }
+}

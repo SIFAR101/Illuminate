@@ -15,6 +15,13 @@ class ProductsController < ApplicationController
     redirect_to product_path(@product)
   end
 
+  def unfavorite
+    @product = Product.find(params[:id])
+    current_user.unfavorite(@product)
+    redirect_to product_path(@product)
+  end
+
+
   def new
     @product = Product.new
   end
