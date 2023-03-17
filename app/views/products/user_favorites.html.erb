@@ -1,12 +1,30 @@
 <div class="container py-5">
   <h1 class="py-4">My Favorites</h1>
-  <div class="favorite-cards">
+  <div class="row favorite-cards m-3">
     <% if @products.any? %>
       <% @products.each do |product| %>
-       <%= render 'shared/card', product: product %>
+        <div class="col-sm-12 col-md-6 col-lg-4">
+          <%= link_to product_path(product) do %>
+            <div class="card rounded-3">
+              <img src="<%= product.image_url %>" class="card-img-top rounded-circle w-50 align-self-center" alt="<%= product.alt_text %>">
+              <div class="card-body">
+                <div class="card-title fs-5"><strong><%= product.name.titleize %></strong></div>
+                <div class="card-subtitle"><%= product.brand.titleize %></p></div>
+              </div>
+            </div>
+          <% end %>
+        </div>
       <% end %>
     <% else %>
       <p>You haven't favorited any products yet.</p>
     <% end %>
   </div>
+
+
+  <div class="buttons d-flex flex-row justify-content-center py-3">
+    <%= link_to 'New Scan', new_product_path, class: "btn btn-primary btn-lg" %>
+    <%= link_to 'Ask for Help', products_assistance_path, class: "btn btn-primary btn-lg" %>
+  </div>
+</div>
+
 </div>
