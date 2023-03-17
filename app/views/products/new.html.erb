@@ -11,7 +11,7 @@
         <i class="fa-solid fa-qrcode"></i><br/>Scanning</h4>
         <p class="sr-only">Place the product in front of the camera and rotate it slowly to find the QR code.</p>
         <p class="sr-only">If no product is found, you can call for assistance using the button below.</p>
-        <%= link_to "Call for Assistance", products_assistance_path, class: "btn btn-dark rounded-3 mt-2", style: 'margin-left: 1vw;' %>
+        <%= link_to "Call for Assistance", products_assistance_path, class: "btn btn-dark rounded-3 mt-2 visually-hidden", style: 'margin-left: 1vw;' %>
 
 
     <%= form_with url: search_products_path, method: :get, local: true, id: "barcode-form" do %>
