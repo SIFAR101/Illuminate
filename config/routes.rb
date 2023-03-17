@@ -17,6 +17,8 @@ Rails.application.routes.draw do
   root to: "pages#home"
   get '/welcome', to: 'pages#welcome'
   get '/terms-and-conditions', to: 'pages#terms'
+  get '/privacy-policy', to: 'pages#privacy'
+
 
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
