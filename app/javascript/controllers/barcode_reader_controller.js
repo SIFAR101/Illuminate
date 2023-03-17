@@ -57,14 +57,12 @@ export default class extends Controller {
       .then((result) => {
         console.log("result", result.text);
         document.getElementById("query").value = result.text;
-        document.getElementById("scan-info").value = `Product ${result.text} scanned.`;
-        document.getElementById("scan-info").removeAttribute('class')
 
         const easySpeech = EasySpeech.detect();
         const appVoice = EasySpeech.voices()[0]
         console.log("ES", easySpeech);
         EasySpeech.speak({
-          text: "Product scanned.",
+          text: "Product found",
           voice: appVoice,
           pitch: 1,
           rate: 1,
