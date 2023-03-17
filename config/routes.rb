@@ -11,7 +11,8 @@ Rails.application.routes.draw do
       get :search, :error, :user_favorites
     end
     member do
-      get :favorite
+      post :favorite
+      post :unfavorite
     end
   end
   root to: "pages#home"

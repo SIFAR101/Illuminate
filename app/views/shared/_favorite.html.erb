@@ -3,17 +3,22 @@
      data-favorite-product-value="<%= @product.to_json %>"
      data-favorite-user-value="<%= current_user.to_json %>">
   <% if user_signed_in? %>
+
     <% if current_user.favorited?(@product) %>
-        <i id="favorited-heart" class="fa-solid fa-heart"></i>
-        <p id ="favorited-text" class="text-center">This product is in your favorites!</p>
-    <% else %>
-      <%= link_to favorite_product_path(@product),
-        class: "favorite-container d-flex flex-column align-items-center",
-        data: { target: "favorite.heart", action: "click->favorite#addToFavorites" } do %>
-        <i id="favorite-heart" class="fa-solid fa-heart"></i>
-        <p class="text-center">Add to your favorites</p>
+      <%= button_to  unfavorite_product_path(@product), method: :post, class: 'text-center standard-button-to' do %>
+        <%= hidden_field_tag :_method, :post %>
+       <i id="favorited-heart" class="fa-solid fa-heart"></i>
+      <p id ="favorited-text" class="text-center">This product is in your favorites!</p>
       <% end %>
+
+    <% else %>
+      <%= button_to favorite_product_path(@product), class: 'standard-button-to', method: :post do %>
+              <i id="favorite-heart" class="fa-solid fa-heart"></i>
+              <p class="text-center">Add to your favorites</p>
     <% end %>
+    <% end %>
+
+
 
   <!-- Else, ask them to sign up or login -->
   <% else %>
