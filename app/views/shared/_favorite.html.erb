@@ -5,7 +5,7 @@
   <% if user_signed_in? %>
     <% if current_user.favorited?(@product) %>
         <i id="favorited-heart" class="fa-solid fa-heart"></i>
-        <p id ="favorited-text" class="text-center">This product is in your favorites!</p>
+        <p id ="favorited-text" class="text-center" role='button'>Remove from your favorites</p>
     <% else %>
       <%= link_to favorite_product_path(@product),
         class: "favorite-container d-flex flex-column align-items-center",
