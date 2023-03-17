@@ -7,8 +7,6 @@
   </section>
 
   <div class="search-container">
-    <h4 id="scan-info" class="animate__animated animate__flash animate__slower animate__infinite">
-        <i class="fa-solid fa-qrcode"></i><br/>Scanning</h4>
     <%= form_with url: search_products_path, method: :get, local: true, id: "barcode-form" do %>
     <div class="form-input d-flex flex-column align-items-center">
       <%= text_field_tag :query,
