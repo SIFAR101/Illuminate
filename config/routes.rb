@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   get '/welcome', to: 'pages#welcome'
   get '/terms-and-conditions', to: 'pages#terms'
   get '/privacy-policy', to: 'pages#privacy'
+  get '/offline', to: 'pages#offline'
 
 
 

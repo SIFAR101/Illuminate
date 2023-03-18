@@ -1,3 +1,7 @@
+<% content_for :meta_title, "#{@product.name} is on #{DEFAULT_META["meta_product_name"]}" %>
+<% content_for :meta_description, @product.description %>
+<% content_for :meta_image, image_url(@product.image_url) if @product.image_url.exists? %>
+
 <div class="container py-2">
   <div class="product-img">
     <% if @product.image_url.nil? %>
