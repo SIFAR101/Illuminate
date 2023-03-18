@@ -1,52 +1,68 @@
 <div class="container-fluid">
-<div style='margin: 20px auto;'>
-<h1 class="text-center" style='font-size: 8vw'>Welcome to Illuminate! </h1>
-<h2 class='text-center' style='font-size: 5vw'>What would you like to do today?</h2>
-</div>
+  <div class="wave-container">
+    <h2 class='text-center my-5' style='font-size: 2em;'>What would you like to do today?</h2>
+  </div>
+
   <div class="row" style='margin-top: 30px;'>
-  <div class="col-sm-12 col-md-6 product-column mx-auto">
-    <%= link_to new_product_path, aria_label: "Scan a product", role: "button", tabindex: "0" do %>
-      <div class="card product-card mb-3">
-        <div class="row g-0">
-          <div class="col-5" aria-hidden="true">
-            <%= image_tag 'barcode1.png', alt: "Barcode image", class: 'img-fluid rounded-start p-3' %>
-          </div>
-          <div class="col-7">
-            <div class="card-body product-card-body" aria-hidden="true">
-              <h5 class="card-title product-index-title">Scan a product</h5>
+    <div class="col-sm-12 col-md-6 product-column mx-auto">
+      <%= link_to new_product_path, aria_label: "Scan a product", role: "button", tabindex: "0" do %>
+        <div class="card product-card mb-4">
+          <div class="row g-0">
+            <div class="col-3" aria-hidden="true">
+              <%= image_tag 'barcode1.png', alt: "Barcode image", class: 'img-fluid rounded-start p-3', width: 200 %>
+            </div>
+            <div class="col-9">
+              <div class="card-body product-card-body" aria-hidden="true">
+                <h5 class="card-title product-index-title">Scan a product</h5>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    <% end %>
-  </div>
+      <% end %>
+    </div>
 
-  <div class="col-sm-12 col-md-6 product-column mx-auto">
-    <%= link_to products_assistance_path, aria_label: "Call for assistance", role: "button", tabindex: "0" do %>
-      <div class="card product-card mb-3" >
-        <div class="row g-0">
-          <div class="col-5" aria-hidden="true">
-            <%= image_tag 'assistance2.png', alt: "Assistance image", class: 'img-fluid rounded-start p-3' %>
-          </div>
-          <div class="col-7">
-            <div class="card-body product-card-body" aria-hidden="true">
-              <h5 class="card-title product-index-title">Call for assistance</h5>
+    <div class="col-sm-12 col-md-6 product-column mx-auto">
+      <%= link_to products_assistance_path, aria_label: "Call for assistance", role: "button", tabindex: "0" do %>
+        <div class="card product-card mb-4" >
+          <div class="row g-0">
+            <div class="col-3" aria-hidden="true">
+              <%= image_tag 'assistance2.png', alt: "Assistance image", class: 'img-fluid rounded-start p-3', width: 200 %>
+            </div>
+            <div class="col-9">
+              <div class="card-body product-card-body" aria-hidden="true">
+                <h5 class="card-title product-index-title fs-3">Call for assistance</h5>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    <% end %>
-  </div>
-</div>
+      <% end %>
+    </div>
 
-  </div>
-
-<% unless user_signed_in? %>
-  <div class="text-center" style='margin: 20px auto;'>
-    <div class="button-container my-3" style="max-width: 400px; margin: 0 auto;">
-      <%= link_to 'Sign Up', new_user_registration_path, class: 'btn btn-lg btn-dark rounded-sm' %>
-      <%= link_to 'Login', new_user_session_path, class: 'btn btn-lg btn-outline-dark rounded-sm' %>
+    <div class="col-sm-12 col-md-6 product-column mx-auto">
+        <%= link_to user_favorites_products_path, aria_label: "Go to favorites", role: "button", tabindex: "0" do %>
+          <div class="card product-card mb-4">
+            <div class="row g-0">
+              <div class="col-3" aria-hidden="true">
+                <%= image_tag 'favorites.png', alt: "Favorites image", class: 'img-fluid rounded-start p-3', width: 200 %>
+              </div>
+              <div class="col-9">
+                <div class="card-body product-card-body" aria-hidden="true">
+                  <h5 class="card-title product-index-title">Go to favorites</h5>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
     </div>
   </div>
+
+
+  <% unless user_signed_in? %>
+    <div class="text-center" style='margin: 20px auto;'>
+      <div class="button-container my-3" style="max-width: 400px; margin: 0 auto;">
+        <%= link_to 'Sign Up', new_user_registration_path, class: 'btn btn-lg btn-dark rounded-sm' %>
+        <%= link_to 'Login', new_user_session_path, class: 'btn btn-lg btn-outline-dark rounded-sm' %>
+      </div>
+    </div>
   <% end %>
 </div>

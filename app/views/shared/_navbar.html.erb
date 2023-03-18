@@ -1,7 +1,7 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon shadow-sm" role="navigation">
   <div class="container-fluid">
-    <%= link_to root_path, class: "navbar-brand", "aria-label": "Illuminate Logo" do %>
-      <%= image_tag "star.png", title: "Illuminate Logo" %>
+    <%= link_to root_path, class: "navbar-brand", aria: { label: "Illuminate Logo" } do %>
+      <%= image_tag "star.png", title: "Illuminate Logo", atl: "Illuminate logo with three yellow stars on a white background" %>
     <% end %>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -12,7 +12,7 @@
       <ul class="navbar-nav me-auto">
         <% if user_signed_in? %>
           <li class="nav-item active">
-            <%= link_to "Home", root_path, class: "nav-link" %>
+            <%= link_to "Dashboard", welcome_path, class: "nav-link" %>
           </li>
             <%# <li class="nav-item"> %>
             <%#= link_to "Welcome", welcome_path, class: "nav-link" %>
