@@ -6,7 +6,7 @@ export default class extends Controller {
   static values = { apiKey: String }
 
   connect() {
-    console.log('Google Maps controller v6 is loaded.')
+    console.log('Google Maps controller is loaded.')
     const loader = new Loader({
       apiKey: this.apiKeyValue,
       version: "weekly",
@@ -21,7 +21,8 @@ export default class extends Controller {
     const infoWindow = new google.maps.InfoWindow();
     const map = new google.maps.Map(document.getElementById("map"), {
       center: { lat: -24 , lng: 42 },
-      zoom: 14
+      zoom: 14,
+      disableDefaultUI: true
     });
       // Try HTML5 geolocation.
       if (navigator.geolocation) {
@@ -68,7 +69,7 @@ export default class extends Controller {
               })
               map.setCenter(marker)
               const content =
-              `<div class="infoWindow">
+              `<div class="infoWindow" aria-label="Sephora Address Info Window">
               <span class="sr-only">You are currently in the following store: </span>
               <h3>Sephora</h3>
               <span class="sr-only">Located in </span>
