@@ -4,13 +4,16 @@
   flex-wrap: wrap;
   align-items:center;
   justify-content: center;
+  padding-left: 1vw;
 
   .card {
     border: none;
     border-radius: 3em;
-    margin: .5em;
+    margin-bottom: 5vh;
+    margin-left: 4vw;
+    margin-right: 2vw;
     box-shadow: 0 10px 30px rgba(0,0,0,.2);
-    width: 376px;
+    width: 360px;
 
     &:hover {
       box-shadow: 0 5px 20px rgba(0,0,0,.05);
