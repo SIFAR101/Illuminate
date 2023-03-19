@@ -75,13 +75,14 @@ export default class extends Controller {
               <span class="sr-only">Located in </span>
               <h4 class="fw-light ">${place.formatted_address}</h4>
               <span class="sr-only">To call for assistance, please press on the following phone number button: </span>
-                <h3 class="fw-light text-primary"><a class="text-primary" aria-label="Call this Sephora location." href="tel:${place.formatted_phone_number}"><i class="fa-solid fa-phone fs-4 text-primary"></i> ${place.formatted_phone_number}</a></h3>
+                <h3 class="fw-light text-primary"><a class="text-primary" aria-label="Sephora location's phone number." href="tel:${place.formatted_phone_number}"><i class="fa-solid fa-phone fs-4 text-primary"></i> ${place.formatted_phone_number}</a></h3>
 
 
               </div>`
 
               infoWindow.setContent(content);
               infoWindow.open(map, marker);
+              infoWindow.focus()
             }
           });
         }
