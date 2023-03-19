@@ -15,7 +15,7 @@
     <% end %>
     <p class="sr-only">User rating: <%= (@product.user_rating.to_i) %>out of 5</p>
 
-    <h2 class="mb-3"><%= @product.retail_price == "$0.00" ? "Ask store associate" : @product.retail_price  %></h2>
+    <h2 class="mb-3"><%= @product.retail_price == "$0.00" ? (link_to "Ask store associate", products_assistance_path, class:"text-primary") : @product.retail_price  %></h2>
     <div class="product-menu accordion accordion-flush" id="accordionFlushExample">
       <div class="accordion-item">
         <h2 class="accordion-header" id="flush-headingOne">

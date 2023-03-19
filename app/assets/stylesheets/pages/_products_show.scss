@@ -14,16 +14,16 @@
       text-decoration: none;
       margin-top: 0;
       font-size: 3.5em;
-      color:#F16767;
+      color:#FF5F9E;
       &:hover {
-        color:#fb8eb6
+        box-shadow: 0 10px 30px rgba(248, 131, 178, 0.2);
       }
     }
     p {
       text-decoration:none;
-      color:#F16767;
+      color:#FF5F9E;
       &:hover {
-        color:#fb8eb6
+        color:#FF5F9E
       }
     }
     #favorited-heart {
@@ -31,10 +31,14 @@
       text-decoration: none;
       margin-top: 0;
       font-size: 3.5em;
-      color:#fb8eb6
+      color:#f82177;
+
+      &:hover {
+        color:#FF5F9E;
+      }
     }
     #favorited-text{
-      color:#fb8eb6
+      color:#f82177;
     }
   }
 }
