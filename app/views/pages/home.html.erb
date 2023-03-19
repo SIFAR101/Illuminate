@@ -23,7 +23,7 @@
           to discover beauty products using a quick QR scan from their mobile device.</p>
           <div class='d-flex flex-row justify-content-center mt-2'>
             <% if user_signed_in? %>
-              <%= link_to "Get started", new_product_path, class: "btn btn-light btn-lg text-primary m-2" %>
+              <%= link_to "Get started", welcome_path, class: "btn btn-light btn-lg text-primary m-2" %>
             <% else %>
               <%= link_to "Get started", new_user_registration_path, class: "btn btn-light btn-lg text-primary m-2" %>
             <% end %>
