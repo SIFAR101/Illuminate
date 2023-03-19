@@ -27,7 +27,8 @@ Devise.setup do |config|
   config.mailer_sender = 'hello@dari.codes'
 
   # Google Login
-  config.omniauth :google_oauth2, ENV['GOOGLE_OAUTH_CLIENT_ID'], ENV['GOOGLE_OAUTH_CLIENT_SECRET']
+  config.omniauth :google_oauth2, ENV['GOOGLE_OAUTH_CLIENT_ID'], ENV['GOOGLE_OAUTH_CLIENT_SECRET'], callback_url: "https://illuminate-us.onrender.com/users/auth/google_oauth2/callback"
+
 
   # Facebook Login
   config.omniauth :facebook, ENV["APP_ID"], ENV["APP_SECRET"], access_type: "online"
