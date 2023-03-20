@@ -1,17 +1,13 @@
 .favorite-cards {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 2.5em;
   align-items:center;
   justify-content: center;
-  padding-left: 1vw;
 
   .card {
     border: none;
     border-radius: 3em;
-    margin-bottom: 5vh;
-    margin-left: 4vw;
-    margin-right: 2vw;
     box-shadow: 0 10px 30px rgba(0,0,0,.2);
     width: 360px;
 
@@ -24,11 +20,23 @@
   }
 }
 
-
-
 .card-title,
 .card-subtitle {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+@media (max-width: 576px) {
+  .favorite-cards {
+    grid-template-columns: 1fr 1fr;
+    gap: 1em;
+  }
+}
+
+@media (max-width: 415px) {
+  .favorite-cards {
+    grid-template-columns: 1fr;
+    gap: 2em;
+  }
 }

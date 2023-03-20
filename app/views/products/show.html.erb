@@ -8,14 +8,14 @@
     <%= render "shared/favorite" %>
   </div>
   <div class="product-details shadow-lg">
-    <h1><%= @product.name.titleize %></h1>
-    <h2><span class="fw-light">by </span><%= @product.brand.titleize %></h2>
+    <h1 class="fs-1"><%= @product.name.titleize %></h1>
+    <h2 class="fs-2"><span class="fw-light">by </span><%= @product.brand.titleize %></h2>
     <% (@product.user_rating.to_i).times do %>
       <i class="fa-solid fa-star fs-2" style="color:#ffcc00;"></i>
     <% end %>
     <p class="sr-only">User rating: <%= (@product.user_rating.to_i) %>out of 5</p>
 
-    <h2 class="mb-3"><%= @product.retail_price == "$0.00" ? (link_to "Ask store associate", products_assistance_path, class:"text-primary") : @product.retail_price  %></h2>
+    <h2 class="fs-2 mb-3"><%= @product.retail_price == "$0.00" ? (link_to "Ask store associate", products_assistance_path, class:"text-primary") : @product.retail_price  %></h2>
     <div class="product-menu accordion accordion-flush" id="accordionFlushExample">
       <div class="accordion-item">
         <h2 class="accordion-header" id="flush-headingOne">
