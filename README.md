@@ -1,6 +1,6 @@
 Welcome to Illuminate! 
 
-This is our submission to the Estée Lauder Beauty Hackathon technical track.
+This is our submission to the Estée Lauder Beauty Hackathon technical track. You can use it on your computer or mobile device here: https://illuminate-us.onrender.com/
 
 <img width="1508" alt="Screen Shot 2023-03-16 at 21 30 14" src="https://user-images.githubusercontent.com/59029920/225745793-c923e132-869e-4e3f-b880-13fd26d5599c.png">
 
