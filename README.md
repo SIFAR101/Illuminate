@@ -17,4 +17,3 @@ We used the ZXing JS Library for our QR Code scanner as it is one of the most re
 
 Finally, the Google Maps API allowed us to easily locate the user and place them next to their nearest Sephora where they will be able to call if in-person assistance is needed.
 
-Rails app generated with [lewagon/rails-templates](https://github.com/lewagon/rails-templates), created by the [Le Wagon coding bootcamp](https://www.lewagon.com) team.
